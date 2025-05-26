@@ -1,27 +1,35 @@
 #include<stdio.h>
+#include <ctype.h>
 #include"main.h"
 
 int main(){
     int op = 0;
 
-    while(op != 3){
+    do{
 
-        printf("1) Jugar\n");
-        printf("2) Ver ranking de equipo\n");
-        printf("3) Salir\n");
+        printf("[A] Jugar\n");
+        printf("[B] Ver ranking equipo\n");
+        printf("[C] Salir\n");
         printf("Seleccione una opcion: ");
-        scanf("%d", &op);
-        if(op < 1 || op > 3)
-            printf("\nLa opción ingresada no es válida\n\n");
+        scanf(" %c", &op);
+
+        op = tolower(op);
 
         switch (op) {
-            case 1:
+            case 'a':
                 iniciarJuego();
                 break;
-            case 2:
+            case 'b':
                 verRanking();
                 break;
-        }
+            case 'c':
+                printf("\nQue tenga un buen dia!\n");
+                break;
+            default:
+                printf("\nLa opción ingresada no es válida\n\n");
+            break;
+            
+        }while(op != 'c');
     }
 
     return 0;
