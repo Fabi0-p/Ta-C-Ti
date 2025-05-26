@@ -7,6 +7,8 @@ int main(){
 
     do{
 
+        limpiarPantalla();
+        
         printf("[A] Jugar\n");
         printf("[B] Ver ranking equipo\n");
         printf("[C] Salir\n");
