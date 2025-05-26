@@ -28,10 +28,11 @@ int main(){
             default:
                 printf("\nLa opción ingresada no es válida\n\n");
             break;
-            
-        }while(op != 'c');
-    }
 
+        }
+            
+    }while(op != 'c');
+        
     return 0;
 }
 
