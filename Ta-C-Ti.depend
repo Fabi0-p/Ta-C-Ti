@@ -5,3 +5,61 @@
 
 1745706834 /mnt/Datos/Documentos/UNLaM Win/2025/AyED/Ta-C-Ti/main.h
 
+1748719983 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\api.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ranking.h"
+	"jugadores.h"
+	"api.h"
+
+1748723740 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\main.c
+	<stdio.h>
+	"main.h"
+	"ranking.h"
+	"api.h"
+	"lista.h"
+	"jugadores.h"
+
+1748119897 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\main.h
+
+1748721722 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\ranking.c
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"lista.h"
+	"ranking.h"
+
+1748663672 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\cola.c
+	"cola.h"
+
+1748663632 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\cola.h
+	"string.h"
+	"stdio.h"
+	"stdlib.h"
+
+1748724843 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\jugadores.c
+	<stdio.h>
+	<string.h>
+	"cola.h"
+	"jugadores.h"
+	"ranking.h"
+	<time.h>
+
+1748725043 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\jugadores.h
+
+1748662139 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\ranking.h
+	"lista.h"
+	"jugadores.h"
+
+1748725037 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\lista.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1748724903 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\lista.c
+	"Lista.h"
+
+1748724858 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\api.h
+	"lista.h"
+

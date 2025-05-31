@@ -1,7 +1,19 @@
 #include<stdio.h>
 #include"main.h"
+#include"ranking.h"
+#include"api.h"
+#include"lista.h"
+#include"jugadores.h"
+
 
 int main(){
+
+
+    inicializarRanking(); // ← muy importante, inicia listaRanking
+
+    char codigoGrupo[] = "proceso"; // después se puede leer desde config.txt
+    obtenerRankingDesdeAPI(codigoGrupo); // carga los datos ya existentes desde la API
+
     int op = 0;
 
     while(op != 3){
@@ -21,21 +33,14 @@ int main(){
             case 2:
                 verRanking();
                 break;
+            case 3:
+                enviarRankingPorPOST(codigoGrupo);
         }
     }
+
+    printf("\n[DEBUG] Programa finalizado correctamente.\n");
+
 
     return 0;
 }
 
-
-void iniciarJuego(){
-    printf("\nPlaceholder para el juego\n\n");
-}
-
-void verRanking(){
-    printf("\nPlaceholder para el ranking\n\n");
-}
-
-void cargarConfig(){
-    printf("\nPlaceholder para cargar la configuración\n\n");
-}
