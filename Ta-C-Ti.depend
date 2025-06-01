@@ -5,3 +5,46 @@
 
 1745706834 /mnt/Datos/Documentos/UNLaM Win/2025/AyED/Ta-C-Ti/main.h
 
+1748744651 source:/home/resilio/UNLaM/2025/AyED/Ta-C-Ti/main.c
+	<stdio.h>
+	"main.h"
+	"Juego.h"
+	"RivalIA.h"
+	"secundarias.h"
+
+1748739850 /home/resilio/UNLaM/2025/AyED/Ta-C-Ti/main.h
+
+1748739092 /home/resilio/UNLaM/2025/AyED/Ta-C-Ti/Juego.c
+	<stdio.h>
+	<stdlib.h>
+	"RivalIA.c"
+	"secundarias.h"
+	"Juego.h"
+
+1748739484 /home/resilio/UNLaM/2025/AyED/Ta-C-Ti/RivalIA.c
+	<stdlib.h>
+	"RivalIA.h"
+
+1748739835 /home/resilio/UNLaM/2025/AyED/Ta-C-Ti/RivalIA.h
+	"main.h"
+
+1748744677 /home/resilio/UNLaM/2025/AyED/Ta-C-Ti/Juego.h
+	"main.h"
+
+1748737403 /home/resilio/UNLaM/2025/AyED/Ta-C-Ti/secundarias.h
+
+1748737403 source:/home/resilio/UNLaM/2025/AyED/Ta-C-Ti/secundarias.c
+	<stdlib.h>
+	"secundarias.h"
+
+1748745021 source:/home/resilio/UNLaM/2025/AyED/Ta-C-Ti/Juego.c
+	<stdio.h>
+	<stdlib.h>
+	"secundarias.h"
+	"Juego.h"
+
+1748739871 source:/home/resilio/UNLaM/2025/AyED/Ta-C-Ti/RivalIA.c
+	<stdlib.h>
+	"RivalIA.h"
+	"Juego.h"
+

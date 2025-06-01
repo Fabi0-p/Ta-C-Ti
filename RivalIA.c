@@ -43,7 +43,7 @@ void jugarCasillaAzar(t_tablero tab, enum t_jugador jug){
         i++;
     }
     // Esto no debería ocurrir nunca, pero lo agrego para que si el programa se rompe no sea por un bucle infinito (sería muy molesto)
-    if(empatado) 
+    if(empatado)
         return;
     while(!jugado){
         int casilla = rand() % 8;

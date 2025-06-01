@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "secundarias.h"
 #include "Juego.h"
 
 void initTablaLineas(t_linea tab[8]){
@@ -85,6 +86,7 @@ int evalTablero(t_linea tabLinea[8], t_tablero tablero, enum t_jugador *ganador)
 }
 
 void mostrarTablero(t_tablero tab){
+    printf("\n+-+-+-+");
     for(int i = 0; i < 3; i++){
         printf("\n|");
         for(int j = 0; j < 3; j++){
@@ -95,38 +97,48 @@ void mostrarTablero(t_tablero tab){
                 ficha = 'X';
             printf("%c|", ficha);
         }
-        printf("+-+-+-+");
+        printf("\n+-+-+-+");
+    }
+}
+
+void mostrarTableroConGuias(t_tablero tab){
+    int count = 1;
+    printf("\n+-+-+-+   +-+-+-+");
+    for(int i = 0; i < 3; i++){
+        printf("\n|");
+        for(int j = 0; j < 3; j++){
+            char ficha = ' ';
+            if(tab[j+i*3] == J_O)
+                ficha = 'O';
+            if(tab[j+i*3] == J_X)
+                ficha = 'X';
+            printf("%c|", ficha);
+        }
+        printf("   |");
+        for(int j = 0; j < 3; j++){
+            printf("%d|", count++);
+        }
+        printf("\n+-+-+-+   +-+-+-+");
     }
 }
 
 void procesarPartida(){
-    t_tablero tablero;
-    int estado = EST_EN_CURSO;
-    enum t_jugador jugHumano = J_O;
-    enum t_jugador jugIA = J_X;
-    limpiarTablero(tablero);
-    while(estado == EST_EN_CURSO){
-        turnoJugador
-    }
+
 }
 
 void limpiarTablero(t_tablero tablero){
-    for(int i = 0; i < 8; i++)
+    for(int i = 0; i < 9; i++)
         tablero[i] = J_VACIO;
 }
 
 void turnoJugador(t_tablero tab, enum t_jugador jug){
     int casilleroElegido = -1, fichaColocada = 0;
     while(!fichaColocada){
-        printf("\n+-+-+-+");
-        printf("\n+0+1+2+");
-        printf("\n+-+-+-+");
-        printf("\n+3+4+5+");
-        printf("\n+-+-+-+");
-        printf("\n+6+7+8+");
-        printf("\n+-+-+-+");
+        limpiarPantalla();
+        mostrarTableroConGuias(tab);
         printf("\nSeleccione un casillero: ");
         scanf("%d", &casilleroElegido);
+        casilleroElegido--;
         if(casilleroElegido >= 0 && casilleroElegido <= 8){
             if(tab[casilleroElegido] == J_VACIO){
                 jugarFicha(tab, jug, casilleroElegido);
@@ -134,6 +146,11 @@ void turnoJugador(t_tablero tab, enum t_jugador jug){
             }
         }
     }
+}
+
+int jugarFicha(t_tablero tab, enum t_jugador jug, short int casilla){
+    tab[casilla] = jug;
+    return 1;
 }
 
 #endif

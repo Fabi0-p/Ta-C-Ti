@@ -31,6 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Juego.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Juego.h" />
+		<Unit filename="RivalIA.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="RivalIA.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.h" />
+		<Unit filename="secundarias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="secundarias.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
