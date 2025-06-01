@@ -4,6 +4,5 @@
 void iniciarJuego();
 void verRanking();
 void cargarConfig();
-void limpiarPantalla();
 
 #endif
