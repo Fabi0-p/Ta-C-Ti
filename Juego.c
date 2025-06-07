@@ -35,14 +35,14 @@ int evalLinea(t_linea linea, t_tablero tablero){
 
 int tableroCompararEstados(int evalActual, int evalCandidato, enum t_jugador jug){
     // Al evaluar las líneas del tablero, hay cierta prioridad que nos interesa. No nos importa que una línea tenga una sola ficha si hay otra línea que ya sabemos que está ganada.
-    // Definimos un orden de 4 prioridades, esta función retorna 1 si la evaluación candidata tiene prioridad sobre la de mayor prioridad actual. 
+    // Definimos un orden de 4 prioridades, esta función retorna 1 si la evaluación candidata tiene prioridad sobre la de mayor prioridad actual.
     // Llamamos "evaluación" a la suma de los 3 casilleros de una línea, considerando que una O vale 1, X vale -1, y un casillero vacío 0.
 
     // Prioridad 1: El módulo de la evaluación es 3.
-    if(abs(evalCandidato) == 3) 
-        return 1; 
-    if(abs(evalActual) == 3) 
-        return 0; 
+    if(abs(evalCandidato) == 3)
+        return 1;
+    if(abs(evalActual) == 3)
+        return 0;
 
     // Prioridad 2: El módulo de la evaluación es 2, y el jugador y la evaluación tienen el mismo signo (su producto es positivo)
     if(abs(evalCandidato) == 2 && evalCandidato * jug > 0)
@@ -50,7 +50,7 @@ int tableroCompararEstados(int evalActual, int evalCandidato, enum t_jugador jug
     if(abs(evalActual) == 2 && evalActual * jug > 0)
         return 0;
 
-    // Prioridad 3: El módulo de la evaluación es 2, y el jugador y la evaluación tienen el diferente signo 
+    // Prioridad 3: El módulo de la evaluación es 2, y el jugador y la evaluación tienen el diferente signo
     if(abs(evalCandidato) == 2)
         return 1;
     if(abs(evalActual) == 2)
@@ -81,7 +81,7 @@ int evalTablero(t_linea tabLinea[8], t_tablero tablero, enum t_jugador *ganador)
     }
     if(empatado)
         return EST_EMPATE;
-    
+
     return EST_EN_CURSO;
 }
 
@@ -152,5 +152,17 @@ int jugarFicha(t_tablero tab, enum t_jugador jug, short int casilla){
     tab[casilla] = jug;
     return 1;
 }
+void asignarFichas(enum t_jugador *jugH, enum t_jugador *IA)
+{
+    if(rand()%2==0)
+    {
+        *jugH=J_O;
+        *IA=J_X;
+    }else
+    {
+        *jugH=J_X;
+        *IA=J_O;
+    }
 
+}
 #endif
