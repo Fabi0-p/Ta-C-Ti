@@ -48,3 +48,36 @@
 	"RivalIA.h"
 	"Juego.h"
 
+1749327689 source:c:\users\facundo\desktop\ta-c-ti\juego.c
+	<stdio.h>
+	<stdlib.h>
+	"secundarias.h"
+	"Juego.h"
+
+1749219503 c:\users\facundo\desktop\ta-c-ti\secundarias.h
+
+1749327751 c:\users\facundo\desktop\ta-c-ti\juego.h
+	"main.h"
+	<time.h>
+
+1749219503 c:\users\facundo\desktop\ta-c-ti\main.h
+
+1749327744 source:c:\users\facundo\desktop\ta-c-ti\main.c
+	<stdio.h>
+	"main.h"
+	"Juego.h"
+	"RivalIA.h"
+	"secundarias.h"
+
+1749219503 c:\users\facundo\desktop\ta-c-ti\rivalia.h
+	"main.h"
+
+1749219503 source:c:\users\facundo\desktop\ta-c-ti\rivalia.c
+	<stdlib.h>
+	"RivalIA.h"
+	"Juego.h"
+
+1749219503 source:c:\users\facundo\desktop\ta-c-ti\secundarias.c
+	<stdlib.h>
+	"secundarias.h"
+

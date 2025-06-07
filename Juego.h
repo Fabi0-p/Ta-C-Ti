@@ -2,7 +2,7 @@
 #define JUEGO_H
 
 #include "main.h"
-
+#include <time.h>
 void initTablaLineas(t_linea tab[8]);
 void limpiarTablero(t_tablero tab);
 int evalLinea(t_linea linea, t_tablero tablero);
@@ -12,5 +12,6 @@ int jugarFicha(t_tablero tab, enum t_jugador jug, short int casilla);
 void turnoJugador(t_tablero tab, enum t_jugador jug);
 int tableroCompararEstados(int evalActual, int evalCandidato, enum t_jugador jug);
 void mostrarTablero(t_tablero tab);
+void asignarFichas(enum t_jugador *jugH, enum t_jugador *IA);
 
 #endif

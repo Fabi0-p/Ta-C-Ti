@@ -5,6 +5,7 @@
 #include "secundarias.h"
 
 int main(){
+    srand(time(NULL));
     int op = 0;
 
     while(op != 3){
@@ -31,14 +32,15 @@ int main(){
 }
 
 
-void iniciarJuego(){    
+void iniciarJuego(){
     t_tablero tablero;
     int estado = EST_EN_CURSO;
-    enum t_jugador jugHumano = J_O;
-    enum t_jugador jugIA = J_X;
+    enum t_jugador jugHumano;
+    enum t_jugador jugIA;
     enum t_jugador ganador = J_VACIO;
     t_linea tabLinea[8];
 
+    asignarFichas(&jugHumano,&jugIA);
     initTablaLineas(tabLinea);
     limpiarTablero(tablero);
     while(estado == EST_EN_CURSO){
