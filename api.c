@@ -68,46 +68,57 @@ void enviarRankingPorPOST(const char* codigoGrupo) {
 }
 
 
-
 void obtenerRankingDesdeAPI(const char* codigoGrupo) {
     char comandoCurl[256];
-    sprintf(comandoCurl,"curl https://algoritmos-api.azurewebsites.net/api/TaCTi/%s -s -o %s",codigoGrupo, ARCHIVO_JSON);
+    sprintf(comandoCurl, "curl https://algoritmos-api.azurewebsites.net/api/TaCTi/%s -s -o api_response.json", codigoGrupo);
+
     int r = system(comandoCurl);
     if (r != 0) {
-        printf("Error al ejecutar curl\n");
+        printf(" Error al ejecutar curl.\n");
         return;
     }
 
-    FILE* f = fopen(ARCHIVO_JSON, "r");
-    if (!f)
-    {
-        printf("No se pudo abrir el archivo %s\n", ARCHIVO_JSON);
+    FILE* f = fopen("api_response.json", "r");
+    if (!f) {
+        printf(" No se pudo abrir el archivo de respuesta.\n");
         return;
     }
 
-    char linea[512];
-    Jugador j;
-
-    while (fgets(linea, sizeof(linea), f))
-        {
-        if (strstr(linea, "\"nombreJugador\""))
-            {
-                char nombre[50];
-                sscanf(linea, " %*[^:] : \"%[^\"]\"", nombre);
-                strcpy(j.nombre, nombre);
-            } else if (strstr(linea, "\"puntaje\""))
-            {
-                int puntos;
-                sscanf(linea, " %*[^:] : %d", &puntos);
-                j.puntaje = puntos;
-                j.partidasJugadas = 0;
-                j.partidasRestantes = 0;
-
-                // Cargamos el jugador al ranking
-                actualizarPuntaje(&j, j.puntaje);
-            }
-        }
-
+    char buffer[4096];
+    fread(buffer, sizeof(char), sizeof(buffer) - 1, f);
+    buffer[sizeof(buffer) - 1] = '\0'; // Null-terminate
     fclose(f);
-    printf(" Ranking cargado desde la API con éxito.\n");
+
+    // Buscar pares "nombreJugador":"X", "puntaje":Y
+    char* ptr = buffer;
+    while ((ptr = strstr(ptr, "\"nombreJugador\"")) != NULL) {
+        char nombre[50];
+        int puntos;
+
+        sscanf(ptr, " %*[^:] : \"%[^\"]\"", nombre);
+        ptr = strstr(ptr, "\"puntaje\"");
+        if (ptr) {
+            sscanf(ptr, " %*[^:] : %d", &puntos);
+
+            Jugador j;
+            strcpy(j.nombre, nombre);
+            j.puntaje = puntos;
+            j.partidasJugadas = 0;
+            j.partidasRestantes = 0;
+
+            actualizarPuntaje(&j, j.puntaje);
+
+            // Avanzar para el próximo jugador
+            ptr++;
+        } else {
+            break;
+        }
+    }
+
+    printf(" Ranking cargado desde la API con exito.\n");
 }
+
+
+
+
+

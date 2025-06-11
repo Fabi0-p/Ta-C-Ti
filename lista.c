@@ -1,4 +1,5 @@
 #include "Lista.h"
+#include"jugadores.h"
 
 #define minimo(x, y)((x) <= (y) ? (x) : (y))
 
@@ -57,46 +58,20 @@ int listaVacia(const Lista* p)
     return *p == NULL;
 }
 
-int ponerAlComienzo(Lista* p, const void* d, unsigned cantBytes)
+int compararJugadorPorNombre(const void* a, const void* b)
 {
-    NodoLista* nuevo;
-
-    if((nuevo = malloc(sizeof(NodoLista))) == NULL ||
-       (nuevo->info = malloc(cantBytes)) ==  NULL)
-    {
-        free(nuevo);
-        return 0;
-    }
-
-    memcpy(nuevo->info, d, cantBytes);
-    nuevo->tamInfo = cantBytes;
-    nuevo->sig = *p;
-    *p = nuevo;
-
-    return 1;
+    const Jugador* j1 = (const Jugador*)a;
+    const Jugador* j2 = (const Jugador*)b;
+    return strcmp(j1->nombre, j2->nombre);
 }
 
-int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes)
-{
-    NodoLista* nuevo;
 
-    while(*p)
-        p = &(*p)->sig;
-
-    if((nuevo = malloc(sizeof(NodoLista))) == NULL ||
-       (nuevo->info = malloc(cantBytes)) == NULL)
-    {
-        free(nuevo);
-        return 0;
-    }
-
-    memcpy(nuevo->info, d, cantBytes);
-    nuevo->tamInfo = cantBytes;
-    nuevo->sig = NULL;
-    *p = nuevo;
-
-    return 1;
+int compararJugadorPorPuntajeDesc(const void* a, const void* b) {
+    const Jugador* j1 = (const Jugador*)a;
+    const Jugador* j2 = (const Jugador*)b;
+    return j2->puntaje - j1->puntaje; // mayor a menor
 }
+
 
 
 

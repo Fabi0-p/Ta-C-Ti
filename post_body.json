@@ -2,8 +2,16 @@
   "CodigoGrupo": "proceso",
   "Jugadores": [
     {
-      "nombre": "Sabri",
-      "puntos": 4
+      "nombre": "Delfi",
+      "puntos": 43
+    },
+    {
+      "nombre": "Fede",
+      "puntos": 40
+    },
+    {
+      "nombre": "Pedro",
+      "puntos": 42
     }
   ]
 }

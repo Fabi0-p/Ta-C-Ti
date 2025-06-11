@@ -9,10 +9,11 @@
 int main(){
 
 
-    inicializarRanking(); // ← muy importante, inicia listaRanking
+    inicializarRanking();
+    char codigoGrupo[] = "proceso";
+    obtenerRankingDesdeAPI("proceso");
 
-    char codigoGrupo[] = "proceso"; // después se puede leer desde config.txt
-    obtenerRankingDesdeAPI(codigoGrupo); // carga los datos ya existentes desde la API
+
 
     int op = 0;
 

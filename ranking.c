@@ -14,29 +14,30 @@ Lista* obtenerListaRanking() {
 }
 
 
-int compararJugadorPorNombre(const void* a, const void* b) {
-    const Jugador* j1 = (const Jugador*)a;
-    const Jugador* j2 = (const Jugador*)b;
-    return strcmp(j1->nombre, j2->nombre);
-}
+
 
 int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo) {
     Jugador* existente = (Jugador*)(*destino);
     const Jugador* nuevoJ = (const Jugador*)nuevo;
+
     existente->puntaje += nuevoJ->puntaje;
     existente->partidasJugadas += nuevoJ->partidasJugadas;
     return 1;
 }
 
+
 void actualizarPuntaje(const Jugador* j, int puntos) {
     Jugador temp = *j;
     temp.puntaje = puntos;
-    temp.partidasJugadas = 1;
+    // Usar el valor real acumulado si viene desde la API
+    // o dejar en 1 si viene desde una partida
+    // Suponiendo que j->partidasJugadas es válido
+    temp.partidasJugadas = j->partidasJugadas;
 
     ponerEnOrden(&listaRanking, &temp, sizeof(Jugador),
-             compararJugadorPorNombre, acumularPuntaje);
-
+                 compararJugadorPorNombre, acumularPuntaje);
 }
+
 
 void mostrarJugador(const void* dato, FILE* fp) {
     const Jugador* j = (const Jugador*)dato;
@@ -45,8 +46,11 @@ void mostrarJugador(const void* dato, FILE* fp) {
 
 void verRanking() {
     printf("\n====== RANKING DE EQUIPO ======\n");
+
     mostrarLista(&listaRanking, mostrarJugador, stdout);
 }
+
+
 
 void generarInformeTXT() {
     time_t t = time(NULL);

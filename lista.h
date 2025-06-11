@@ -23,12 +23,12 @@ void crearLista(Lista* p);
 int vaciarLista(Lista* p);
 
 
+
 int listaLlena(const Lista* p, unsigned cantBytes);
 int listaVacia(const Lista* p);
 
-// Inserción
-int ponerAlComienzo(Lista* p, const void* d, unsigned cantBytes);
-int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes);
+int compararJugadorPorPuntajeDesc(const void*, const void* );
+int compararJugadorPorNombre(const void* , const void* );
 
 // Ordenamiento
 void ordenarLista(Lista* p, int(*Comparar)(const void*, const void*));
