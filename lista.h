@@ -21,7 +21,8 @@ typedef NodoLista* Lista;
 // Funciones básicas
 void crearLista(Lista* p);
 int vaciarLista(Lista* p);
-
+int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes);
+int mostrarLista(Lista* Lista, void (*Mostrar)(const void*, FILE*), FILE* fp);
 
 
 int listaLlena(const Lista* p, unsigned cantBytes);

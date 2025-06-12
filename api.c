@@ -4,11 +4,10 @@
 #include "ranking.h"
 #include "jugadores.h"
 #include "api.h"
-
-// 🔹 Este archivo se genera al hacer curl
 #define ARCHIVO_JSON "api_response.json"
 
-void enviarRankingPorPOST(const char* codigoGrupo) {
+
+void enviarRankingPorPOST(const char* codigoGrupo){
     FILE* f = fopen("post_body.json", "w");
     if (!f) {
         printf(" No se pudo crear el archivo post_body.json\n");
@@ -24,7 +23,6 @@ void enviarRankingPorPOST(const char* codigoGrupo) {
     NodoLista* actual = *lista; //  correcto — lista apunta a NodoLista*
 
 
- // función auxiliar que devuelve el `Lista`
     int primero = 1;
 
     while (actual) {
@@ -43,14 +41,6 @@ void enviarRankingPorPOST(const char* codigoGrupo) {
     }
 
     fprintf(f, "\n  ]\n}");
-    printf("Contenido del JSON a enviar:\n");
-    FILE* preview = fopen("post_body.json", "r");
-        if (preview) {
-            char ch;
-        while ((ch = fgetc(preview)) != EOF)
-            putchar(ch);
-        fclose(preview);
-}
 
     fclose(f);
 
@@ -68,7 +58,8 @@ void enviarRankingPorPOST(const char* codigoGrupo) {
 }
 
 
-void obtenerRankingDesdeAPI(const char* codigoGrupo) {
+void obtenerRankingDesdeAPI(const char* codigoGrupo)
+{
     char comandoCurl[256];
     sprintf(comandoCurl, "curl https://algoritmos-api.azurewebsites.net/api/TaCTi/%s -s -o api_response.json", codigoGrupo);
 
@@ -83,19 +74,23 @@ void obtenerRankingDesdeAPI(const char* codigoGrupo) {
         printf(" No se pudo abrir el archivo de respuesta.\n");
         return;
     }
+    vaciarLista(obtenerListaRanking());
 
     char buffer[4096];
     fread(buffer, sizeof(char), sizeof(buffer) - 1, f);
     buffer[sizeof(buffer) - 1] = '\0'; // Null-terminate
     fclose(f);
 
-    // Buscar pares "nombreJugador":"X", "puntaje":Y
     char* ptr = buffer;
     while ((ptr = strstr(ptr, "\"nombreJugador\"")) != NULL) {
         char nombre[50];
         int puntos;
 
-        sscanf(ptr, " %*[^:] : \"%[^\"]\"", nombre);
+        if(sscanf(ptr, " %*[^:] : \"%[^\"]\"", nombre)!=1)
+        {
+            printf("ERROR no se pudo leer puntaje para jugador %s", nombre);
+            break;
+        }
         ptr = strstr(ptr, "\"puntaje\"");
         if (ptr) {
             sscanf(ptr, " %*[^:] : %d", &puntos);
@@ -106,9 +101,12 @@ void obtenerRankingDesdeAPI(const char* codigoGrupo) {
             j.partidasJugadas = 0;
             j.partidasRestantes = 0;
 
-            actualizarPuntaje(&j, j.puntaje);
+            if (!ponerAlFinal(obtenerListaRanking(), &j, sizeof(Jugador)))
+                {
+                    printf("[ERROR] Falló insertar jugador en lista\n");
+                    break;
+                }
 
-            // Avanzar para el próximo jugador
             ptr++;
         } else {
             break;

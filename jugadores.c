@@ -3,6 +3,7 @@
 #include "cola.h"
 #include "jugadores.h"
 #include "ranking.h"
+#include "api.h"
 #include <time.h>
 
 
@@ -14,17 +15,18 @@ void iniciarJuego() {
 
     Cola colaJugadores;
     crearCola(&colaJugadores);
+    vaciarLista(obtenerListaRanking());
 
     int cant;
-    printf("\n¿Cuántos jugadores van a jugar? ");
+    printf("\nCuantos jugadores van a jugar? ");
     scanf("%d", &cant);
-    getchar(); // limpiar buffer
+    getchar();
 
     for (int i = 0; i < cant; i++) {
         Jugador j;
         printf("Nombre del jugador %d: ", i + 1);
         fgets(j.nombre, sizeof(j.nombre), stdin);
-        j.nombre[strcspn(j.nombre, "\n")] = '\0'; // eliminar el \n
+        j.nombre[strcspn(j.nombre, "\n")] = '\0';
 
         j.puntaje = 0;
         j.partidasJugadas = 0;
@@ -39,8 +41,8 @@ void iniciarJuego() {
 
         printf("\nTurno de %s\n", actual.nombre);
 
-        // Acá deberías mostrar el tablero e iniciar la partida contra IA
-        // Por ahora simulamos resultado
+        // Acá podriamos mostrar el tablero e iniciar la partida contra IA
+        // Por el momento esto lo simulamos
             int resultadoSimulado = rand() % 3; // 0 = perdió, 1 = empató, 2 = ganó
 
         int puntaje = 0;
@@ -54,8 +56,16 @@ void iniciarJuego() {
             printf("Resultado simulado: Victoria (+3 puntos)\n");
             puntaje = 3;
         }// simular que ganó
-        printf("Resultado simulado: +%d puntos\n", puntaje);
-        actualizarPuntaje(&actual, puntaje);
+
+        Jugador nuevoResultado;
+        strcpy(nuevoResultado.nombre, actual.nombre);
+        nuevoResultado.puntaje = puntaje;
+        nuevoResultado.partidasJugadas = 1;
+        nuevoResultado.partidasRestantes = 0;
+
+        ponerEnOrden(obtenerListaRanking(), &nuevoResultado, sizeof(Jugador),
+                     compararJugadorPorNombre, acumularPuntaje);
+
         actual.partidasRestantes--;
         actual.partidasJugadas++;
 
@@ -65,4 +75,6 @@ void iniciarJuego() {
     }
 
     printf("\n Todas las partidas han sido jugadas.\n");
+
+    enviarRankingPorPOST("proceso");
 }

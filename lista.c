@@ -23,6 +23,30 @@ int vaciarLista(Lista* p)
     return cant;
 }
 
+int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes)
+{
+    NodoLista* nuevo;
+
+    // Avanza hasta el final de la lista
+    while (*p)
+        p = &(*p)->sig;
+
+    nuevo = malloc(sizeof(NodoLista));
+    if (!nuevo || (nuevo->info = malloc(cantBytes)) == NULL)
+    {
+        free(nuevo);
+        return 0;
+    }
+
+    memcpy(nuevo->info, d, cantBytes);
+    nuevo->tamInfo = cantBytes;
+    nuevo->sig = NULL;
+    *p = nuevo;
+
+    return 1;
+}
+
+
 int vaciarListaYMostrar(Lista* p, void (*Mostrar)(const void* elem, FILE* arch), FILE* fp)
 {
     int cant = 0;
@@ -76,29 +100,35 @@ int compararJugadorPorPuntajeDesc(const void* a, const void* b) {
 
 
 
-void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*))
-{
-    Lista* primero = lista;
+void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {
+    if (!lista || !*lista || !(*lista)->sig)
+        return; // lista vacía o con un solo elemento
 
-    if(*lista == NULL) //Si no hay lista no se puede ordenar
-        return;
+    int ordenado;
+    do {
+        ordenado = 1;
+        NodoLista* actual = *lista;
 
-    while((*lista)->sig) //Mientras haya siguiente...
-    {
-        if(Comparar((*lista)->info, (*lista)->sig->info) > 0) //Si el actual es mayor que el siguiente...
-        {
-            Lista* q = primero; //Prepara para comenzar desde el inicio de la lista
-            NodoLista* aux = (*lista)->sig; //Toma la direccion del nodo
+        while (actual && actual->sig) {
+            if (!actual->info || !actual->sig->info)
+                break; // evita crash si algún info es NULL
 
-            (*lista)->sig = aux->sig; //Desvincula el nodo de la lista
-            while(Comparar((*q)->info, aux->info) > 0) //Avanza buscando el lugar de insercion
-                q = &(*q)->sig;
-            aux->sig = *q;
-            *q = aux; //Vincula el nodo en la lista
+            if (Comparar(actual->info, actual->sig->info) > 0) {
+                // intercambio seguro de info y tamaños
+                void* tempInfo = actual->info;
+                unsigned tempTam = actual->tamInfo;
+
+                actual->info = actual->sig->info;
+                actual->tamInfo = actual->sig->tamInfo;
+
+                actual->sig->info = tempInfo;
+                actual->sig->tamInfo = tempTam;
+
+                ordenado = 0;
+            }
+            actual = actual->sig;
         }
-        else
-            lista = &(*lista)->sig;
-    }
+    } while (!ordenado);
 }
 
 int mostrarLista(Lista* Lista, void (*Mostrar)(const void*, FILE*), FILE* fp)

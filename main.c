@@ -11,7 +11,7 @@ int main(){
 
     inicializarRanking();
     char codigoGrupo[] = "proceso";
-    obtenerRankingDesdeAPI("proceso");
+    obtenerRankingDesdeAPI(codigoGrupo);
 
 
 
@@ -35,7 +35,7 @@ int main(){
                 verRanking();
                 break;
             case 3:
-                enviarRankingPorPOST(codigoGrupo);
+                break;
         }
     }
 

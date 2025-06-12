@@ -2,6 +2,7 @@
 #include <string.h>
 #include <time.h>
 #include"lista.h"
+#include"api.h"
 #include "ranking.h"
 
 static Lista listaRanking;
@@ -15,28 +16,18 @@ Lista* obtenerListaRanking() {
 
 
 
-
 int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo) {
     Jugador* existente = (Jugador*)(*destino);
     const Jugador* nuevoJ = (const Jugador*)nuevo;
 
     existente->puntaje += nuevoJ->puntaje;
     existente->partidasJugadas += nuevoJ->partidasJugadas;
+
     return 1;
 }
 
 
-void actualizarPuntaje(const Jugador* j, int puntos) {
-    Jugador temp = *j;
-    temp.puntaje = puntos;
-    // Usar el valor real acumulado si viene desde la API
-    // o dejar en 1 si viene desde una partida
-    // Suponiendo que j->partidasJugadas es válido
-    temp.partidasJugadas = j->partidasJugadas;
 
-    ponerEnOrden(&listaRanking, &temp, sizeof(Jugador),
-                 compararJugadorPorNombre, acumularPuntaje);
-}
 
 
 void mostrarJugador(const void* dato, FILE* fp) {
@@ -46,7 +37,8 @@ void mostrarJugador(const void* dato, FILE* fp) {
 
 void verRanking() {
     printf("\n====== RANKING DE EQUIPO ======\n");
-
+    obtenerRankingDesdeAPI("proceso");
+    ordenarLista(&listaRanking, compararJugadorPorPuntajeDesc);
     mostrarLista(&listaRanking, mostrarJugador, stdout);
 }
 
