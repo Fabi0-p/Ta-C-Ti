@@ -1,20 +1,21 @@
 #include<stdio.h>
 #include"main.h"
+
+#include "Juego.h"
+#include "RivalIA.h"
+#include "secundarias.h"
 #include"ranking.h"
 #include"api.h"
 #include"lista.h"
 #include"jugadores.h"
 
-
 int main(){
-
-
+    srand(time(NULL));
+    
     inicializarRanking();
     char codigoGrupo[] = "proceso";
     obtenerRankingDesdeAPI(codigoGrupo);
-
-
-
+    
     int op = 0;
 
     while(op != 3){
@@ -41,7 +42,44 @@ int main(){
 
     printf("\n[DEBUG] Programa finalizado correctamente.\n");
 
-
     return 0;
 }
 
+void iniciarJuego(){
+    t_tablero tablero;
+    int estado = EST_EN_CURSO;
+    enum t_jugador jugHumano;
+    enum t_jugador jugIA;
+    enum t_jugador ganador = J_VACIO;
+    t_linea tabLinea[8];
+
+    asignarFichas(&jugHumano,&jugIA);
+    initTablaLineas(tabLinea);
+    limpiarTablero(tablero);
+    while(estado == EST_EN_CURSO){
+        turnoJugador(tablero, jugHumano);
+        estado = evalTablero(tabLinea, tablero, &ganador);
+        if(estado != EST_EN_CURSO)
+            break;
+        IAjugarTurno(tabLinea, tablero, jugIA);
+        estado = evalTablero(tabLinea, tablero, &ganador);
+    }
+    limpiarPantalla();
+    printf("\nFin del juego! ");
+    mostrarTablero(tablero);
+    switch(ganador){
+        case J_O:
+            printf("\nGanador: Os\n");
+            break;
+        case J_X:
+            printf("\nGanador: Xs\n");
+            break;
+        case J_VACIO:
+            printf("\nEmpate\n");
+            break;
+    }
+}
+
+void cargarConfig(){
+    printf("\nPlaceholder para cargar la configuración\n\n");
+}
