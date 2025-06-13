@@ -1,11 +1,21 @@
 #include<stdio.h>
 #include"main.h"
+
 #include "Juego.h"
 #include "RivalIA.h"
 #include "secundarias.h"
+#include"ranking.h"
+#include"api.h"
+#include"lista.h"
+#include"jugadores.h"
 
 int main(){
     srand(time(NULL));
+    
+    inicializarRanking();
+    char codigoGrupo[] = "proceso";
+    obtenerRankingDesdeAPI(codigoGrupo);
+    
     int op = 0;
 
     while(op != 3){
@@ -25,12 +35,15 @@ int main(){
             case 2:
                 verRanking();
                 break;
+            case 3:
+                break;
         }
     }
 
+    printf("\n[DEBUG] Programa finalizado correctamente.\n");
+
     return 0;
 }
-
 
 void iniciarJuego(){
     t_tablero tablero;
@@ -65,10 +78,6 @@ void iniciarJuego(){
             printf("\nEmpate\n");
             break;
     }
-}
-
-void verRanking(){
-    printf("\nPlaceholder para el ranking\n\n");
 }
 
 void cargarConfig(){

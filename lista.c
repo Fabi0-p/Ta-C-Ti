@@ -1,0 +1,180 @@
+#include "Lista.h"
+#include"jugadores.h"
+
+#define minimo(x, y)((x) <= (y) ? (x) : (y))
+
+void crearLista(Lista* p)
+{
+    *p = NULL;
+}
+
+int vaciarLista(Lista* p)
+{
+    int cant = 0;
+    while(*p)
+    {
+        NodoLista* aux = *p;
+
+        cant++;
+        *p = aux->sig;
+        free(aux->info);
+        free(aux);
+    }
+    return cant;
+}
+
+int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes)
+{
+    NodoLista* nuevo;
+
+    // Avanza hasta el final de la lista
+    while (*p)
+        p = &(*p)->sig;
+
+    nuevo = malloc(sizeof(NodoLista));
+    if (!nuevo || (nuevo->info = malloc(cantBytes)) == NULL)
+    {
+        free(nuevo);
+        return 0;
+    }
+
+    memcpy(nuevo->info, d, cantBytes);
+    nuevo->tamInfo = cantBytes;
+    nuevo->sig = NULL;
+    *p = nuevo;
+
+    return 1;
+}
+
+
+int vaciarListaYMostrar(Lista* p, void (*Mostrar)(const void* elem, FILE* arch), FILE* fp)
+{
+    int cant = 0;
+    while(*p) //Mientras hay nodo
+    {
+        NodoLista* aux = *p; //"Memoriza" donde está
+
+        cant++;
+        *p = aux->sig;  //Desengancho el nodo
+
+        if(Mostrar && fp) //No falla si no recibe la funcion o el archivo
+            Mostrar(aux->info, fp);
+
+        free(aux->info);
+        free(aux);
+    }
+    return cant;
+}
+
+int ListaLlena(const Lista* p, unsigned cantBytes)
+{
+    NodoLista* aux = malloc(sizeof(NodoLista));
+    void* info = malloc(cantBytes);
+
+    free(aux);
+    free(info);
+
+    return aux == NULL || info == NULL;
+}
+
+int listaVacia(const Lista* p)
+{
+    return *p == NULL;
+}
+
+int compararJugadorPorNombre(const void* a, const void* b)
+{
+    const Jugador* j1 = (const Jugador*)a;
+    const Jugador* j2 = (const Jugador*)b;
+    return strcmp(j1->nombre, j2->nombre);
+}
+
+
+int compararJugadorPorPuntajeDesc(const void* a, const void* b) {
+    const Jugador* j1 = (const Jugador*)a;
+    const Jugador* j2 = (const Jugador*)b;
+    return j2->puntaje - j1->puntaje; // mayor a menor
+}
+
+
+
+
+
+void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {
+    if (!lista || !*lista || !(*lista)->sig)
+        return; // lista vacía o con un solo elemento
+
+    int ordenado;
+    do {
+        ordenado = 1;
+        NodoLista* actual = *lista;
+
+        while (actual && actual->sig) {
+            if (!actual->info || !actual->sig->info)
+                break; // evita crash si algún info es NULL
+
+            if (Comparar(actual->info, actual->sig->info) > 0) {
+                // intercambio seguro de info y tamaños
+                void* tempInfo = actual->info;
+                unsigned tempTam = actual->tamInfo;
+
+                actual->info = actual->sig->info;
+                actual->tamInfo = actual->sig->tamInfo;
+
+                actual->sig->info = tempInfo;
+                actual->sig->tamInfo = tempTam;
+
+                ordenado = 0;
+            }
+            actual = actual->sig;
+        }
+    } while (!ordenado);
+}
+
+int mostrarLista(Lista* Lista, void (*Mostrar)(const void*, FILE*), FILE* fp)
+{
+    int cant = 0;
+
+    while(*Lista)
+    {
+        Mostrar((*Lista)->info, fp);
+        Lista = &(*Lista)->sig;
+        cant++;
+    }
+    return cant;
+}
+
+int ponerEnOrden(Lista* lista, const void* d, unsigned cantBytes,
+                 int(*Comparar)(const void*, const void*),
+                 int(*Acumular)(void**, unsigned*, const void*, unsigned))
+{
+    NodoLista* nuevo;
+
+    while(*lista && Comparar((*lista)->info, d) < 0)
+        lista = &(*lista)->sig;
+
+    if(*lista && Comparar((*lista)->info, d) == 0)
+    {
+        if(Acumular)
+            if(!Acumular(&(*lista)->info, &(*lista)->tamInfo, d, cantBytes))
+                return SIN_MEM;
+        return CLA_DUP;
+    }
+
+    if((nuevo = malloc(sizeof(NodoLista))) == NULL || (nuevo->info = malloc(cantBytes)) == NULL)
+    {
+        free(nuevo);
+        return SIN_MEM;
+    }
+
+    memcpy(nuevo->info, d, cantBytes);
+    nuevo->tamInfo = cantBytes;
+    nuevo->sig = *lista;
+    *lista = nuevo;
+
+    return TODO_OK;
+}
+
+
+
+

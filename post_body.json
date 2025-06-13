@@ -1,0 +1,13 @@
+{
+  "CodigoGrupo": "proceso",
+  "Jugadores": [
+    {
+      "nombre": "Fede",
+      "puntos": 0
+    },
+    {
+      "nombre": "Juani",
+      "puntos": 3
+    }
+  ]
+}

@@ -31,6 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="api.h" />
+		<Unit filename="cola.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cola.h" />
+		<Unit filename="jugadores.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jugadores.h" />
+		<Unit filename="lista.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lista.h" />
 		<Unit filename="Juego.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -43,6 +59,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.h" />
+		<Unit filename="ranking.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ranking.h" />
 		<Unit filename="secundarias.c">
 			<Option compilerVar="CC" />
 		</Unit>
