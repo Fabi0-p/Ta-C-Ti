@@ -9,7 +9,7 @@ int evalLinea(t_linea linea, t_tablero tablero);
 int evalTablero(t_linea tabLinea[8], t_tablero tablero, enum t_jugador *ganador);
 int evalTableroConGuias(t_linea tabLinea[8], t_tablero tablero, enum t_jugador *ganador);
 int jugarFicha(t_tablero tab, enum t_jugador jug, short int casilla);
-void turnoJugador(t_tablero tab, enum t_jugador jug);
+void turnoJugador(t_tablero tab, enum t_jugador jug, char* nombreJug);
 int tableroCompararEstados(int evalActual, int evalCandidato, enum t_jugador jug);
 void mostrarTablero(t_tablero tab);
 void asignarFichas(enum t_jugador *jugH, enum t_jugador *IA);

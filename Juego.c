@@ -131,10 +131,11 @@ void limpiarTablero(t_tablero tablero){
         tablero[i] = J_VACIO;
 }
 
-void turnoJugador(t_tablero tab, enum t_jugador jug){
+void turnoJugador(t_tablero tab, enum t_jugador jug, char* nombreJug){
     int casilleroElegido = -1, fichaColocada = 0;
     while(!fichaColocada){
         limpiarPantalla();
+        printf("\nTurno de %s\n", nombreJug);
         mostrarTableroConGuias(tab);
         printf("\nSeleccione un casillero: ");
         scanf("%d", &casilleroElegido);

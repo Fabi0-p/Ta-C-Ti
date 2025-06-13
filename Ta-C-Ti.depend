@@ -65,7 +65,9 @@
 
 1748724858 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\api.h
 	"lista.h"
-  
+
+1748724858 
+
 1748744651 source:/home/resilio/UNLaM/2025/AyED/Ta-C-Ti/main.c
 	<stdio.h>
 	"main.h"
@@ -141,4 +143,82 @@
 1749219503 source:c:\users\facundo\desktop\ta-c-ti\secundarias.c
 	<stdlib.h>
 	"secundarias.h"
+
+1749776577 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\api.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ranking.h"
+	"jugadores.h"
+	"api.h"
+
+1749776577 e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.h
+	"lista.h"
+	"jugadores.h"
+
+1749776577 e:\documentos\unlam win\2025\ayed\ta-c-ti\lista.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1749777654 e:\documentos\unlam win\2025\ayed\ta-c-ti\jugadores.h
+
+1749776577 e:\documentos\unlam win\2025\ayed\ta-c-ti\api.h
+	"lista.h"
+
+1749776577 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\cola.c
+	"cola.h"
+
+1749776577 e:\documentos\unlam win\2025\ayed\ta-c-ti\cola.h
+	"string.h"
+	"stdio.h"
+	"stdlib.h"
+
+1749777615 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.c
+	<stdio.h>
+	<stdlib.h>
+	"secundarias.h"
+	"Juego.h"
+
+1749776570 e:\documentos\unlam win\2025\ayed\ta-c-ti\secundarias.h
+
+1749777632 e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.h
+	"main.h"
+	<time.h>
+
+1749777218 e:\documentos\unlam win\2025\ayed\ta-c-ti\main.h
+
+1749776577 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\lista.c
+	"Lista.h"
+	"jugadores.h"
+
+1749776577 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.c
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"lista.h"
+	"api.h"
+	"ranking.h"
+
+1749776577 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\rivalia.c
+	<stdlib.h>
+	"RivalIA.h"
+	"Juego.h"
+
+1749776577 e:\documentos\unlam win\2025\ayed\ta-c-ti\rivalia.h
+	"main.h"
+
+1749776570 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\secundarias.c
+	<stdlib.h>
+	"secundarias.h"
+
+1749776870 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\main.c
+	<stdio.h>
+	<time.h>
+	"main.h"
+	"secundarias.h"
+	"ranking.h"
+	"api.h"
+	"lista.h"
+	"jugadores.h"
 

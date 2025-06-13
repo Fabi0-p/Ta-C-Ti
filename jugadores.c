@@ -3,19 +3,22 @@
 #include "cola.h"
 #include "jugadores.h"
 #include "ranking.h"
+#include "secundarias.h"
 #include "api.h"
 #include <time.h>
 
+#include "Juego.h"
+#include "RivalIA.h"
 
 // Este valor eventualmente debe venir de configuracion.txt
 #define PARTIDAS_POR_JUGADOR 3
 
 void iniciarJuego() {
     srand(time(NULL));
-
     Cola colaJugadores;
     crearCola(&colaJugadores);
     vaciarLista(obtenerListaRanking());
+
 
     int cant;
     printf("\nCuantos jugadores van a jugar? ");
@@ -39,23 +42,11 @@ void iniciarJuego() {
         Jugador actual;
         sacarDeCola(&colaJugadores, &actual, sizeof(Jugador));
 
-        printf("\nTurno de %s\n", actual.nombre);
+        printf("\nComenzar siguiente partida");
+        getchar();
+        getchar();
 
-        // Acá podriamos mostrar el tablero e iniciar la partida contra IA
-        // Por el momento esto lo simulamos
-            int resultadoSimulado = rand() % 3; // 0 = perdió, 1 = empató, 2 = ganó
-
-        int puntaje = 0;
-        if (resultadoSimulado == 0) {
-            printf("Resultado simulado: Derrota (-1 punto)\n");
-            puntaje = -1;
-        } else if (resultadoSimulado == 1) {
-            printf("Resultado simulado: Empate (+2 puntos)\n");
-            puntaje = 2;
-        } else {
-            printf("Resultado simulado: Victoria (+3 puntos)\n");
-            puntaje = 3;
-        }// simular que ganó
+        int puntaje = partida(actual.nombre);
 
         Jugador nuevoResultado;
         strcpy(nuevoResultado.nombre, actual.nombre);
@@ -77,4 +68,46 @@ void iniciarJuego() {
     printf("\n Todas las partidas han sido jugadas.\n");
 
     enviarRankingPorPOST("proceso");
+}
+
+int partida(char* nombreJug){
+    t_tablero tablero;
+    int estado = EST_EN_CURSO;
+    enum t_jugador jugHumano;
+    enum t_jugador jugIA;
+    enum t_jugador ganador = J_VACIO;
+    t_linea tabLinea[8];
+
+    asignarFichas(&jugHumano,&jugIA);
+    initTablaLineas(tabLinea);
+    limpiarTablero(tablero);
+    while(estado == EST_EN_CURSO){
+        turnoJugador(tablero, jugHumano, nombreJug);
+        estado = evalTablero(tabLinea, tablero, &ganador);
+        if(estado != EST_EN_CURSO)
+            break;
+        IAjugarTurno(tabLinea, tablero, jugIA);
+        estado = evalTablero(tabLinea, tablero, &ganador);
+    }
+    limpiarPantalla();
+    printf("\nFin del juego! ");
+    mostrarTablero(tablero);
+    switch(ganador){
+        case J_O:
+            printf("\nGanador: Os\n");
+            break;
+        case J_X:
+            printf("\nGanador: Xs\n");
+            break;
+        case J_VACIO:
+            printf("\nEmpate\n");
+            break;
+    }
+
+    // Retornamos la cantidad de puntos ganados
+    if(ganador == J_X)
+        return 2;
+    if(ganador == jugHumano)
+        return 3;
+    return -1;
 }
