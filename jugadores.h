@@ -8,6 +8,9 @@ typedef struct {
     int partidasRestantes;
 } Jugador;
 
+void iniciarJuego();
+int partida(char *nombreJug);
+
 #endif // JUGADORES_H_INCLUDED
 
 
