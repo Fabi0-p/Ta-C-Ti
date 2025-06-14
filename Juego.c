@@ -74,7 +74,7 @@ int evalTablero(t_linea tabLinea[8], t_tablero tablero, enum t_jugador *ganador)
         return EST_GANADO;
     }
     i = 0;
-    while(i < 8 && empatado){
+    while(i < 9 && empatado){
         if(tablero[i] == J_VACIO)
             empatado = 0;
         i++;
@@ -166,4 +166,47 @@ void asignarFichas(enum t_jugador *jugH, enum t_jugador *IA)
     }
 
 }
+
+int partida(char* nombreJug, void (jugadaIA)(t_linea[8], t_tablero, enum t_jugador)){
+    t_tablero tablero;
+    int estado = EST_EN_CURSO;
+    enum t_jugador jugHumano;
+    enum t_jugador jugIA;
+    enum t_jugador ganador = J_VACIO;
+    t_linea tabLinea[8];
+
+    asignarFichas(&jugHumano,&jugIA);
+    initTablaLineas(tabLinea);
+    limpiarTablero(tablero);
+    while(estado == EST_EN_CURSO){
+        turnoJugador(tablero, jugHumano, nombreJug);
+        estado = evalTablero(tabLinea, tablero, &ganador);
+        if(estado != EST_EN_CURSO)
+            break;
+        jugadaIA(tabLinea, tablero, jugIA);
+        estado = evalTablero(tabLinea, tablero, &ganador);
+    }
+    limpiarPantalla();
+    printf("\nFin del juego! ");
+    mostrarTablero(tablero);
+    switch(ganador){
+        case J_O:
+            printf("\nGanador: Os\n");
+            break;
+        case J_X:
+            printf("\nGanador: Xs\n");
+            break;
+        case J_VACIO:
+            printf("\nEmpate\n");
+            break;
+    }
+
+    // Retornamos la cantidad de puntos ganados
+    if(ganador == J_VACIO)
+        return 2;
+    if(ganador == jugHumano)
+        return 3;
+    return -1;
+}
+
 #endif

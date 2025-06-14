@@ -1,10 +1,10 @@
 #ifndef RANKING_H_INCLUDED
 #define RANKING_H_INCLUDED
 #include "lista.h"
-#include "jugadores.h"
+#include "main.h"
 
 void inicializarRanking();
-void actualizarPuntaje(const Jugador* j, int puntos);
+void actualizarPuntaje(const InfoJugador* j, int puntos);
 void verRanking();
 void generarInformeTXT();
 int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo);
