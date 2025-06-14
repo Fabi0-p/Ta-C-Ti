@@ -1,5 +1,5 @@
 #include "Lista.h"
-#include"jugadores.h"
+#include "main.h"
 
 #define minimo(x, y)((x) <= (y) ? (x) : (y))
 
@@ -52,7 +52,7 @@ int vaciarListaYMostrar(Lista* p, void (*Mostrar)(const void* elem, FILE* arch),
     int cant = 0;
     while(*p) //Mientras hay nodo
     {
-        NodoLista* aux = *p; //"Memoriza" donde está
+        NodoLista* aux = *p; //"Memoriza" donde estï¿½
 
         cant++;
         *p = aux->sig;  //Desengancho el nodo
@@ -84,15 +84,15 @@ int listaVacia(const Lista* p)
 
 int compararJugadorPorNombre(const void* a, const void* b)
 {
-    const Jugador* j1 = (const Jugador*)a;
-    const Jugador* j2 = (const Jugador*)b;
+    const InfoJugador* j1 = (const InfoJugador*)a;
+    const InfoJugador* j2 = (const InfoJugador*)b;
     return strcmp(j1->nombre, j2->nombre);
 }
 
 
 int compararJugadorPorPuntajeDesc(const void* a, const void* b) {
-    const Jugador* j1 = (const Jugador*)a;
-    const Jugador* j2 = (const Jugador*)b;
+    const InfoJugador* j1 = (const InfoJugador*)a;
+    const InfoJugador* j2 = (const InfoJugador*)b;
     return j2->puntaje - j1->puntaje; // mayor a menor
 }
 
@@ -102,7 +102,7 @@ int compararJugadorPorPuntajeDesc(const void* a, const void* b) {
 
 void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {
     if (!lista || !*lista || !(*lista)->sig)
-        return; // lista vacía o con un solo elemento
+        return; // lista vacï¿½a o con un solo elemento
 
     int ordenado;
     do {
@@ -111,10 +111,10 @@ void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {
 
         while (actual && actual->sig) {
             if (!actual->info || !actual->sig->info)
-                break; // evita crash si algún info es NULL
+                break; // evita crash si algï¿½n info es NULL
 
             if (Comparar(actual->info, actual->sig->info) > 0) {
-                // intercambio seguro de info y tamaños
+                // intercambio seguro de info y tamaï¿½os
                 void* tempInfo = actual->info;
                 unsigned tempTam = actual->tamInfo;
 

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ranking.h"
-#include "jugadores.h"
 #include "api.h"
 #define ARCHIVO_JSON "api_response.json"
 
@@ -26,7 +25,7 @@ void enviarRankingPorPOST(const char* codigoGrupo){
     int primero = 1;
 
     while (actual) {
-        Jugador* j = (Jugador*)actual->info;
+        InfoJugador* j = (InfoJugador*)actual->info;
 
         if (!primero)
             fprintf(f, ",\n");
@@ -95,13 +94,13 @@ void obtenerRankingDesdeAPI(const char* codigoGrupo)
         if (ptr) {
             sscanf(ptr, " %*[^:] : %d", &puntos);
 
-            Jugador j;
+            InfoJugador j;
             strcpy(j.nombre, nombre);
             j.puntaje = puntos;
             j.partidasJugadas = 0;
             j.partidasRestantes = 0;
 
-            if (!ponerAlFinal(obtenerListaRanking(), &j, sizeof(Jugador)))
+            if (!ponerAlFinal(obtenerListaRanking(), &j, sizeof(InfoJugador)))
                 {
                     printf("[ERROR] Falló insertar jugador en lista\n");
                     break;

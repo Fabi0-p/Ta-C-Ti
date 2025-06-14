@@ -11,6 +11,13 @@ enum t_jugador{
     J_O = 1
 };
 
+typedef struct {
+    char nombre[50];
+    int puntaje;
+    int partidasJugadas;
+    int partidasRestantes;
+} InfoJugador;
+
 typedef enum t_jugador t_tablero[9]; 
 typedef short int t_linea[3]; 
 

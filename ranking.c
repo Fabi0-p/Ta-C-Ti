@@ -17,8 +17,8 @@ Lista* obtenerListaRanking() {
 
 
 int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo) {
-    Jugador* existente = (Jugador*)(*destino);
-    const Jugador* nuevoJ = (const Jugador*)nuevo;
+    InfoJugador* existente = (InfoJugador*)(*destino);
+    const InfoJugador* nuevoJ = (const InfoJugador*)nuevo;
 
     existente->puntaje += nuevoJ->puntaje;
     existente->partidasJugadas += nuevoJ->partidasJugadas;
@@ -31,7 +31,7 @@ int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, uns
 
 
 void mostrarJugador(const void* dato, FILE* fp) {
-    const Jugador* j = (const Jugador*)dato;
+    const InfoJugador* j = (const InfoJugador*)dato;
     fprintf(fp, "%s - %d puntos (%d partidas)\n", j->nombre, j->puntaje, j->partidasJugadas);
 }
 
