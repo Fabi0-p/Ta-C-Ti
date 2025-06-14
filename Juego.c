@@ -87,7 +87,8 @@ int evalTablero(t_linea tabLinea[8], t_tablero tablero, enum t_jugador *ganador)
 
 void mostrarTablero(t_tablero tab){
     printf("\n+-+-+-+");
-    for(int i = 0; i < 3; i++){
+    // Orden decreciente para que coincida con el numpad del teclado y que sea más cómodo de jugar
+    for(int i = 2; i >= 0; i--){
         printf("\n|");
         for(int j = 0; j < 3; j++){
             char ficha = ' ';
@@ -102,9 +103,9 @@ void mostrarTablero(t_tablero tab){
 }
 
 void mostrarTableroConGuias(t_tablero tab){
-    int count = 1;
     printf("\n+-+-+-+   +-+-+-+");
-    for(int i = 0; i < 3; i++){
+    // Orden decreciente para que coincida con el numpad del teclado y que sea más cómodo de jugar
+    for(int i = 2; i >= 0; i--){
         printf("\n|");
         for(int j = 0; j < 3; j++){
             char ficha = ' ';
@@ -116,14 +117,10 @@ void mostrarTableroConGuias(t_tablero tab){
         }
         printf("   |");
         for(int j = 0; j < 3; j++){
-            printf("%d|", count++);
+            printf("%d|", i*3 + j + 1);
         }
         printf("\n+-+-+-+   +-+-+-+");
     }
-}
-
-void procesarPartida(){
-
 }
 
 void limpiarTablero(t_tablero tablero){
@@ -174,17 +171,24 @@ int partida(char* nombreJug, void (jugadaIA)(t_linea[8], t_tablero, enum t_jugad
     enum t_jugador jugIA;
     enum t_jugador ganador = J_VACIO;
     t_linea tabLinea[8];
+    int turno = 0; // Empezamos en el turno 0 o 1 al azar, y asignamos los turnos pares al jugador y los impares a la IA
 
     asignarFichas(&jugHumano,&jugIA);
+    // jugHumano = J_X;
+    // jugIA = J_O;
     initTablaLineas(tabLinea);
     limpiarTablero(tablero);
+
+    if(jugHumano == J_O)
+        turno = 1;
+
     while(estado == EST_EN_CURSO){
-        turnoJugador(tablero, jugHumano, nombreJug);
+        if(turno % 2 == 0)
+            turnoJugador(tablero, jugHumano, nombreJug);
+        else 
+            jugadaIA(tabLinea, tablero, jugIA);
         estado = evalTablero(tabLinea, tablero, &ganador);
-        if(estado != EST_EN_CURSO)
-            break;
-        jugadaIA(tabLinea, tablero, jugIA);
-        estado = evalTablero(tabLinea, tablero, &ganador);
+        turno++;
     }
     limpiarPantalla();
     printf("\nFin del juego! ");

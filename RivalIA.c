@@ -37,7 +37,7 @@ void IAjugarTurno(t_linea tabLinea[8], t_tablero tablero, enum t_jugador jug){
 
 void jugarCasillaAzar(t_tablero tab, enum t_jugador jug){
     int jugado = 0, i = 0, empatado = 1;
-    while(i < 8 && empatado){
+    while(i < 9 && empatado){
         if(tab[i] == 0)
             empatado = 0;
         i++;
@@ -46,7 +46,7 @@ void jugarCasillaAzar(t_tablero tab, enum t_jugador jug){
     if(empatado)
         return;
     while(!jugado){
-        int casilla = rand() % 8;
+        int casilla = rand() % 9;
         if(tab[casilla] == J_VACIO){
             jugarFicha(tab, jug, casilla);
             jugado = 1;

@@ -19,8 +19,8 @@ int main(){
     srand(time(NULL));
 
     inicializarRanking();
-    char codigoGrupo[] = "proceso";
-    obtenerRankingDesdeAPI(codigoGrupo);
+    //char codigoGrupo[] = "proceso";
+    //obtenerRankingDesdeAPI(codigoGrupo);
 
     int op = 0;
 
@@ -84,7 +84,7 @@ void iniciarJuego() {
         InfoJugador actual;
         sacarDeCola(&colaJugadores, &actual, sizeof(InfoJugador));
 
-        printf("\nComenzar siguiente partida");
+        printf("\nPresiona [Enter] para comenzar siguiente partida...");
         fflush(stdin);
         getchar();
 

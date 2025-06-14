@@ -173,7 +173,7 @@
 	"stdio.h"
 	"stdlib.h"
 
-1749861935 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.c
+1749932759 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.c
 	<stdio.h>
 	<stdlib.h>
 	"secundarias.h"
@@ -199,7 +199,7 @@
 	"api.h"
 	"ranking.h"
 
-1749776577 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\rivalia.c
+1749936088 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\rivalia.c
 	<stdlib.h>
 	"RivalIA.h"
 	"Juego.h"
@@ -211,7 +211,7 @@
 	<stdlib.h>
 	"secundarias.h"
 
-1749863026 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\main.c
+1749939124 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\main.c
 	<stdio.h>
 	<time.h>
 	"main.h"
