@@ -13,6 +13,6 @@ void turnoJugador(t_tablero tab, enum t_jugador jug, char* nombreJug);
 int tableroCompararEstados(int evalActual, int evalCandidato, enum t_jugador jug);
 void mostrarTablero(t_tablero tab);
 void asignarFichas(enum t_jugador *jugH, enum t_jugador *IA);
-int partida(char *nombreJug, void (jugadaIA)(t_linea[8], t_tablero, enum t_jugador));
+int partida(char *nombreJug, void (*jugadaIA)(t_linea[8], t_tablero, enum t_jugador));
 
 #endif

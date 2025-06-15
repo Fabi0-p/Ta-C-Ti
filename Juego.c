@@ -164,7 +164,7 @@ void asignarFichas(enum t_jugador *jugH, enum t_jugador *IA)
 
 }
 
-int partida(char* nombreJug, void (jugadaIA)(t_linea[8], t_tablero, enum t_jugador)){
+int partida(char* nombreJug, void (*jugadaIA)(t_linea[8], t_tablero, enum t_jugador)){
     t_tablero tablero;
     int estado = EST_EN_CURSO;
     enum t_jugador jugHumano;

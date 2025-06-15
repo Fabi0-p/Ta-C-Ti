@@ -1,8 +1,6 @@
 #include "Lista.h"
 #include "main.h"
 
-#define minimo(x, y)((x) <= (y) ? (x) : (y))
-
 void crearLista(Lista* p)
 {
     *p = NULL;
@@ -46,7 +44,6 @@ int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes)
     return 1;
 }
 
-
 int vaciarListaYMostrar(Lista* p, void (*Mostrar)(const void* elem, FILE* arch), FILE* fp)
 {
     int cant = 0;
@@ -89,16 +86,18 @@ int compararJugadorPorNombre(const void* a, const void* b)
     return strcmp(j1->nombre, j2->nombre);
 }
 
+int compararJugadorPorPrioridadRelativa(const void* a, const void* b)
+{
+    const InfoJugador* j1 = (const InfoJugador*)a;
+    const InfoJugador* j2 = (const InfoJugador*)b;
+    return j2->prioridadRelativa - j1->prioridadRelativa;
+}
 
 int compararJugadorPorPuntajeDesc(const void* a, const void* b) {
     const InfoJugador* j1 = (const InfoJugador*)a;
     const InfoJugador* j2 = (const InfoJugador*)b;
     return j2->puntaje - j1->puntaje; // mayor a menor
 }
-
-
-
-
 
 void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {
     if (!lista || !*lista || !(*lista)->sig)
@@ -144,6 +143,18 @@ int mostrarLista(Lista* Lista, void (*Mostrar)(const void*, FILE*), FILE* fp)
     return cant;
 }
 
+int recorrerLista(Lista* Lista, void (*Accion)(void*)){
+    int cant = 0;
+    
+    while(*Lista)
+    {
+        Accion((*Lista)->info);
+        Lista = &(*Lista)->sig;
+        cant++;
+    }
+    return cant;
+}
+
 int ponerEnOrden(Lista* lista, const void* d, unsigned cantBytes,
                  int(*Comparar)(const void*, const void*),
                  int(*Acumular)(void**, unsigned*, const void*, unsigned))
@@ -160,6 +171,28 @@ int ponerEnOrden(Lista* lista, const void* d, unsigned cantBytes,
                 return SIN_MEM;
         return CLA_DUP;
     }
+
+    if((nuevo = malloc(sizeof(NodoLista))) == NULL || (nuevo->info = malloc(cantBytes)) == NULL)
+    {
+        free(nuevo);
+        return SIN_MEM;
+    }
+
+    memcpy(nuevo->info, d, cantBytes);
+    nuevo->tamInfo = cantBytes;
+    nuevo->sig = *lista;
+    *lista = nuevo;
+
+    return TODO_OK;
+}
+
+int ponerEnOrdenConRepetidos(Lista* lista, const void* d, unsigned cantBytes,
+                 int(*Comparar)(const void*, const void*))
+{
+    NodoLista* nuevo;
+
+    while(*lista && Comparar((*lista)->info, d) < 0)
+        lista = &(*lista)->sig;
 
     if((nuevo = malloc(sizeof(NodoLista))) == NULL || (nuevo->info = malloc(cantBytes)) == NULL)
     {
