@@ -50,11 +50,14 @@ void cargarConfig(){
 }
 
 void iniciarJuego() {
-    srand(time(NULL));
     Lista listaJugadores;
+    ProcesarJugadorExtraParams extraParams;
+    int cant;
+
+    extraParams.partidasPorJugador = PARTIDAS_POR_JUGADOR; // Esto se tiene que levantar de la config
+    crearCola(&extraParams.colaInfo);
     crearLista(&listaJugadores);
 
-    int cant;
     printf("\nCuantos jugadores van a jugar? ");
     scanf("%d", &cant);
     getchar();
@@ -74,21 +77,24 @@ void iniciarJuego() {
 
         ponerEnOrdenConRepetidos(&listaJugadores, &j, sizeof(InfoJugador), compararJugadorPorPrioridadRelativa);
     }
-    
+
     printf("\nOrden de los jugadores:\n");
     mostrarLista(&listaJugadores, mostrarJugador, stdout);
-    recorrerLista(&listaJugadores, procesarJugador);
+    recorrerLista(&listaJugadores, &extraParams, procesarJugador);
 
     printf("\n Todas las partidas han sido jugadas.\n");
 
+    // acá hay que llamar la función que genere el informe y pasarle como parámetro extraParams.colaInfo
     enviarRankingPorPOST("proceso", &listaJugadores);
     vaciarLista(&listaJugadores);
+    vaciarCola(&extraParams.colaInfo);
 }
 
-void procesarJugador(void* elem){
+void procesarJugador(void* elem, void* extraParams){
+    // en params->colaInfo se puede guardar la información que se necesite para el informe TXT
     InfoJugador *actual = (InfoJugador*)elem;
-
-    for(int i = 0; i < PARTIDAS_POR_JUGADOR; i++){
+    ProcesarJugadorExtraParams* params = (ProcesarJugadorExtraParams*)extraParams;
+    for(int i = 0; i < params->partidasPorJugador; i++){
         printf("\nQue el jugador \"%s\" se prepare para la partida %d/%d. Presione [Enter] cuando este listo... ", actual->nombre, i+1, PARTIDAS_POR_JUGADOR);
         fflush(stdin);
         getchar();

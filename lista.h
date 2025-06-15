@@ -23,8 +23,7 @@ void crearLista(Lista* p);
 int vaciarLista(Lista* p);
 int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes);
 int mostrarLista(Lista* Lista, void (*Mostrar)(const void*, FILE*), FILE* fp);
-int recorrerLista(Lista* Lista, void (*Accion)(void*));
-
+int recorrerLista(Lista* Lista, void* extraParams, void (*Accion)(void*, void*));
 
 int listaLlena(const Lista* p, unsigned cantBytes);
 int listaVacia(const Lista* p);

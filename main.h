@@ -2,6 +2,7 @@
 #define MAIN_H
 
 #include<stdio.h>
+#include"cola.h"
 
 #define EST_EN_CURSO 0
 #define EST_EMPATE 1
@@ -21,13 +22,18 @@ typedef struct {
     int prioridadRelativa;
 } InfoJugador;
 
+typedef struct{
+    int partidasPorJugador;
+    Cola colaInfo;
+}ProcesarJugadorExtraParams;
+
 typedef enum t_jugador t_tablero[9]; 
 typedef short int t_linea[3]; 
 
 void iniciarJuego();
 void verRanking();
 void cargarConfig();
-void procesarJugador(void* elem);
+void procesarJugador(void* elem, void* extraParams);
 void mostrarJugador(const void* dato, FILE* fp);
 
 #endif

@@ -143,12 +143,12 @@ int mostrarLista(Lista* Lista, void (*Mostrar)(const void*, FILE*), FILE* fp)
     return cant;
 }
 
-int recorrerLista(Lista* Lista, void (*Accion)(void*)){
+int recorrerLista(Lista* Lista, void* extraParams, void (*Accion)(void*, void*)){
     int cant = 0;
     
     while(*Lista)
     {
-        Accion((*Lista)->info);
+        Accion((*Lista)->info, extraParams);
         Lista = &(*Lista)->sig;
         cant++;
     }
