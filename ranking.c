@@ -5,17 +5,6 @@
 #include"api.h"
 #include "ranking.h"
 
-static Lista listaRanking;
-
-void inicializarRanking() {
-    crearLista(&listaRanking);
-}
-Lista* obtenerListaRanking() {
-    return &listaRanking;
-}
-
-
-
 int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo) {
     InfoJugador* existente = (InfoJugador*)(*destino);
     const InfoJugador* nuevoJ = (const InfoJugador*)nuevo;
@@ -26,39 +15,39 @@ int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, uns
     return 1;
 }
 
-
-
-
-
-void mostrarJugador(const void* dato, FILE* fp) {
+void mostrarJugadorConPuntos(const void* dato, FILE* fp) {
     const InfoJugador* j = (const InfoJugador*)dato;
-    fprintf(fp, "%s - %d puntos (%d partidas)\n", j->nombre, j->puntaje, j->partidasJugadas);
+    fprintf(fp, "%s: %d puntos\n", j->nombre, j->puntaje);
 }
 
 void verRanking() {
+    Lista listaRanking;
     printf("\n====== RANKING DE EQUIPO ======\n");
-    obtenerRankingDesdeAPI("proceso");
+    crearLista(&listaRanking);
+    obtenerRankingDesdeAPI("proceso", &listaRanking);
     ordenarLista(&listaRanking, compararJugadorPorPuntajeDesc);
-    mostrarLista(&listaRanking, mostrarJugador, stdout);
+    mostrarLista(&listaRanking, mostrarJugadorConPuntos, stdout);
+    vaciarLista(&listaRanking);
 }
 
 
-
+/*
 void generarInformeTXT() {
     time_t t = time(NULL);
     struct tm* tm_info = localtime(&t);
     char nombreArchivo[100];
     strftime(nombreArchivo, sizeof(nombreArchivo), "informes/informe-juego_%Y-%m-%d-%H-%M.txt", tm_info);
-
+    
     FILE* f = fopen(nombreArchivo, "w");
     if (!f) {
         perror("No se pudo crear el informe");
         return;
     }
-
+    
     fprintf(f, "======= INFORME DE PARTIDAS =======\n\n");
     mostrarLista(&listaRanking, mostrarJugador, f);
     fclose(f);
-
+    
     printf(" Informe generado: %s\n", nombreArchivo);
 }
+*/
