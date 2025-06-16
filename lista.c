@@ -145,7 +145,7 @@ int mostrarLista(Lista* Lista, void (*Mostrar)(const void*, FILE*), FILE* fp)
 
 int recorrerLista(Lista* Lista, void* extraParams, void (*Accion)(void*, void*)){
     int cant = 0;
-    
+
     while(*Lista)
     {
         Accion((*Lista)->info, extraParams);
@@ -206,6 +206,15 @@ int ponerEnOrdenConRepetidos(Lista* lista, const void* d, unsigned cantBytes,
     *lista = nuevo;
 
     return TODO_OK;
+}
+
+int existeEnLista(Lista* lista, const void* d, int(*Comparar)(const void*, const void*))
+{
+    while(*lista && Comparar((*lista)->info, d) != 0)
+        lista = &(*lista)->sig;
+
+    if(*lista) return 1;
+    return 0;
 }
 
 
