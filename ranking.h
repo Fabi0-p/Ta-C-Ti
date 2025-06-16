@@ -11,6 +11,6 @@ void imprimirTableroTXT(t_tablero,FILE *);
 void imprimirRankingTXT(Lista *,FILE *);
 void imprimirJugadorTXT(void* elem, void* extraParams);
 int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo);
-
+int reemplazarPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo);
 
 #endif // RANKING_H_INCLUDED

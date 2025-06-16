@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include "lista.h"
 #include "api.h"
 #include "ranking.h"
@@ -11,6 +12,15 @@ int acumularPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, uns
 
     existente->puntaje += nuevoJ->puntaje;
     existente->partidasJugadas += nuevoJ->partidasJugadas;
+
+    return 1;
+}
+
+int reemplazarPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, unsigned tamNuevo) {
+    InfoJugador* existente = (InfoJugador*)(*destino);
+    const InfoJugador* nuevoJ = (const InfoJugador*)nuevo;
+
+    existente->puntaje = fmax(nuevoJ->puntaje, existente->puntaje);
 
     return 1;
 }
@@ -50,11 +60,13 @@ void generarInformeTXT(Cola *p) {
     fprintf(f, "======= INFORME DE PARTIDAS =======\n\n");
     InfoPartida partida;
     while (!colaVacia(p)) {
-    sacarDeCola(p, &partida, sizeof(InfoPartida));
-    if(!listaLlena(&mejoresPuntajes,sizeof(Lista))){
-        ponerEnOrdenConRepetidos(&mejoresPuntajes,&partida.j,sizeof(InfoJugador),compararJugadorPorPuntajeDesc);
-    }
-
+        sacarDeCola(p, &partida, sizeof(InfoPartida));
+        if(!listaLlena(&mejoresPuntajes,sizeof(Lista))){
+            // Metemos los jugadores en orden alfabético, y cuando hay un jugador repetido pisamos el puntaje por el mayor
+            ponerEnOrden(&mejoresPuntajes,&partida.j,sizeof(InfoJugador),compararJugadorPorNombre, reemplazarPuntaje);
+        }
+        // Y después ordenamos por puntaje
+        ordenarLista(&mejoresPuntajes, compararJugadorPorPuntajeAsc);
 
         fprintf(f, "Jugador: %s\n", partida.j.nombre);
         fprintf(f, "Partida nro: %d\n", partida.numeroPartida);
@@ -64,11 +76,12 @@ void generarInformeTXT(Cola *p) {
         fprintf(f, "\n------------------------\n\n");
         suma +=partida.puntajePartida;
         if(partida.numeroPartida == PARTIDAS_POR_JUGADOR)
-        {           fprintf(f, "\n");
-                    fprintf(f, "El Jugador: %s\n", partida.j.nombre);
-                    fprintf(f, "Sumo en total : %d\n", suma);
-                    fprintf(f, "\n------------------------\n\n");
-                    suma =0;
+        {           
+            fprintf(f, "\n");
+            fprintf(f, "El Jugador: %s\n", partida.j.nombre);
+            fprintf(f, "Sumo en total : %d\n", suma);
+            fprintf(f, "\n------------------------\n\n");
+            suma =0;
         }
     }
     imprimirRankingTXT(&mejoresPuntajes,f);
