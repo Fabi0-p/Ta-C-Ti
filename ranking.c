@@ -27,6 +27,7 @@ void verRanking() {
     obtenerRankingDesdeAPI("proceso", &listaRanking);
     ordenarLista(&listaRanking, compararJugadorPorPuntajeDesc);
     mostrarLista(&listaRanking, mostrarJugadorConPuntos, stdout);
+    printf("\n");
     vaciarLista(&listaRanking);
 }
 
