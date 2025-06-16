@@ -46,8 +46,8 @@ typedef struct {
     int cantPartidas;
 }Config;
 
-void iniciarJuego();
-void verRanking();
+void iniciarJuego(Config *c);
+void verRanking(Config *c);
 int cargarConfig(Config *c);
 void procesarJugador(void* elem, void* extraParams);
 void mostrarJugador(const void* dato, FILE* fp);

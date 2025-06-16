@@ -30,11 +30,11 @@ void mostrarJugadorConPuntos(const void* dato, FILE* fp) {
     fprintf(fp, "%s: %d puntos\n", j->nombre, j->puntaje);
 }
 
-void verRanking() {
+void verRanking(Config *conf) {
     Lista listaRanking;
     printf("\n====== RANKING DE EQUIPO ======\n");
     crearLista(&listaRanking);
-    obtenerRankingDesdeAPI("proceso", &listaRanking);
+    obtenerRankingDesdeAPI(conf->passw, &listaRanking);//cambio "proceso" por conf->passw
     ordenarLista(&listaRanking, compararJugadorPorPuntajeDesc);
     mostrarLista(&listaRanking, mostrarJugadorConPuntos, stdout);
     vaciarLista(&listaRanking);
@@ -42,7 +42,7 @@ void verRanking() {
 
 
 
-void generarInformeTXT(Cola *p) {
+void generarInformeTXT(Cola *p, Config *conf) {
     time_t t = time(NULL);
     struct tm* tm_info = localtime(&t);
     char nombreArchivo[100];
@@ -75,8 +75,8 @@ void generarInformeTXT(Cola *p) {
         imprimirTableroTXT(partida.tablero, f);
         fprintf(f, "\n------------------------\n\n");
         suma +=partida.puntajePartida;
-        if(partida.numeroPartida == PARTIDAS_POR_JUGADOR)
-        {           
+        if(partida.numeroPartida == conf->cantPartidas)
+        {
             fprintf(f, "\n");
             fprintf(f, "El Jugador: %s\n", partida.j.nombre);
             fprintf(f, "Sumo en total : %d\n", suma);

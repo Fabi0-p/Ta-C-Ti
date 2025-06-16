@@ -34,10 +34,10 @@ int main(){
 
         switch (op) {
             case 1:
-                iniciarJuego();
+                iniciarJuego(&conf);
                 break;
             case 2:
-                verRanking();
+                verRanking(&conf);
                 break;
             case 3:
                 break;
@@ -71,12 +71,12 @@ int cargarConfig(Config *c){
     return 0;
 }
 
-void iniciarJuego() {
+void iniciarJuego(Config *conf) {
     Lista listaJugadores;
     ProcesarJugadorExtraParams extraParams;
     int cant;
 
-    extraParams.partidasPorJugador = PARTIDAS_POR_JUGADOR; // Esto se tiene que levantar de la config
+    extraParams.partidasPorJugador = conf->cantPartidas;//PARTIDAS_POR_JUGADOR; // Esto se tiene que levantar de la config
     crearCola(&extraParams.colaInfo);
     crearLista(&listaJugadores);
 
@@ -95,7 +95,7 @@ void iniciarJuego() {
         // Insertamos cualquier número como prioridad relativa. No usamos bun % porque no nos interesa el valor preciso, solo que sea menor o mayor a los demás y que sea aleatorio
         // Además al no usar un % hacemos que sea menos probable que los valores se repitan
         j.prioridadRelativa = rand();
-        j.partidasRestantes = PARTIDAS_POR_JUGADOR;
+        j.partidasRestantes = conf->cantPartidas;//PARTIDAS_POR_JUGADOR;
 
         ponerEnOrdenConRepetidos(&listaJugadores, &j, sizeof(InfoJugador), compararJugadorPorPrioridadRelativa);
     }
@@ -107,8 +107,8 @@ void iniciarJuego() {
     printf("\n Todas las partidas han sido jugadas.\n");
 
     // acá hay que llamar la función que genere el informe y pasarle como parámetro extraParams.colaInfo
-    generarInformeTXT(&extraParams.colaInfo);
-    enviarRankingPorPOST("proceso", &listaJugadores);
+    generarInformeTXT(&extraParams.colaInfo,conf);
+    enviarRankingPorPOST(conf->passw, &listaJugadores);//aca cambie "proceso" -> por conf->pasww
     vaciarLista(&listaJugadores);
     vaciarCola(&extraParams.colaInfo);
 }

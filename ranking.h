@@ -6,7 +6,7 @@
 void inicializarRanking();
 void actualizarPuntaje(const InfoJugador* j, int puntos);
 void verRanking();
-void generarInformeTXT(Cola *q);
+void generarInformeTXT(Cola *q, Config *c);
 void imprimirTableroTXT(t_tablero,FILE *);
 void imprimirRankingTXT(Lista *,FILE *);
 void imprimirJugadorTXT(void* elem, void* extraParams);
