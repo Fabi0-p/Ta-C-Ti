@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include"cola.h"
+#include"lista.h"
 
 #define EST_EN_CURSO 0
 #define EST_EMPATE 1
@@ -35,5 +36,6 @@ void verRanking();
 void cargarConfig();
 void procesarJugador(void* elem, void* extraParams);
 void mostrarJugador(const void* dato, FILE* fp);
+void agregarJugadores(Lista *listaJugadores, int num);
 
 #endif

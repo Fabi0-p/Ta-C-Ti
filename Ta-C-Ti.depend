@@ -151,11 +151,11 @@
 	"main.h"
 	"api.h"
 
-1749955305 e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.h
+1750086758 e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.h
 	"lista.h"
 	"main.h"
 
-1749958761 e:\documentos\unlam win\2025\ayed\ta-c-ti\lista.h
+1750091094 e:\documentos\unlam win\2025\ayed\ta-c-ti\lista.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
@@ -173,7 +173,7 @@
 	"stdio.h"
 	"stdlib.h"
 
-1749958358 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.c
+1750086758 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.c
 	<stdio.h>
 	<stdlib.h>
 	"secundarias.h"
@@ -181,19 +181,20 @@
 
 1749776570 e:\documentos\unlam win\2025\ayed\ta-c-ti\secundarias.h
 
-1749958358 e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.h
+1750086758 e:\documentos\unlam win\2025\ayed\ta-c-ti\juego.h
 	"main.h"
 	<time.h>
 
-1749958674 e:\documentos\unlam win\2025\ayed\ta-c-ti\main.h
+1750090162 e:\documentos\unlam win\2025\ayed\ta-c-ti\main.h
 	<stdio.h>
 	"cola.h"
+	"lista.h"
 
 1749958460 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\lista.c
 	"Lista.h"
 	"main.h"
 
-1749958358 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.c
+1750086758 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.c
 	<stdio.h>
 	<string.h>
 	<time.h>
@@ -213,9 +214,10 @@
 	<stdlib.h>
 	"secundarias.h"
 
-1749956948 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\main.c
+1750092076 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\main.c
 	<stdio.h>
 	<time.h>
+	<ctype.h>
 	"main.h"
 	"secundarias.h"
 	"ranking.h"
