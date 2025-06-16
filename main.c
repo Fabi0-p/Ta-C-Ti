@@ -26,7 +26,7 @@ int main(){
         printf("Seleccione una opcion: ");
         scanf("%d", &op);
         if(op < 1 || op > 3)
-            printf("\nLa opción ingresada no es válida\n\n");
+            printf("\nLa opcion ingresada no es valida\n\n");
 
         switch (op) {
             case 1:
@@ -46,7 +46,7 @@ int main(){
 }
 
 void cargarConfig(){
-    printf("\nPlaceholder para cargar la configuración\n\n");
+    printf("\nPlaceholder para cargar la configuracion\n\n");
 }
 
 void iniciarJuego() {
