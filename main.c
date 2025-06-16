@@ -16,7 +16,11 @@ void iniciarJuego();
 
 int main(){
     srand(time(NULL));
-
+    Config conf;
+    cargarConfig(&conf);
+    printf("leidos correctamente los valores de :\n");
+    printf("URL : %s  PASWW %s  \n",conf.url,conf.passw);
+    printf("Cant de partidas %d:\n",conf.cantPartidas);
     int op = 0;
 
     while(op != 3){
@@ -45,8 +49,26 @@ int main(){
     return 0;
 }
 
-void cargarConfig(){
-    printf("\nPlaceholder para cargar la configuración\n\n");
+int cargarConfig(Config *c){
+    FILE *f;
+    f = fopen(ARCH_CONFIG,"r");
+    if(!f)
+    {
+        printf("\n error al abrir el archivo de configuraciones\n");
+        return 1;
+    }
+    if (fscanf(f, " %[^|]| %[^\n]\n", c->url, c->passw) != 2) {
+        printf("error al leer url y la passw\n");
+        fclose(f);
+        return 1;
+    }
+    if (fscanf(f, "%d", &c->cantPartidas) != 1) {
+        printf("error al leer cant partidas\n");
+        fclose(f);
+        return 1;
+    }
+    fclose(f);
+    return 0;
 }
 
 void iniciarJuego() {

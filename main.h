@@ -4,6 +4,9 @@
 #include<stdio.h>
 #include"cola.h"
 
+#define MAX_URL 200
+#define MAX_PASSW 30
+#define ARCH_CONFIG "config.txt"
 #define EST_EN_CURSO 0
 #define EST_EMPATE 1
 #define EST_GANADO 2
@@ -37,9 +40,15 @@ typedef struct {
     int numeroPartida;
 }InfoPartida;
 
+typedef struct {
+    char url[MAX_URL];
+    char passw[MAX_PASSW];
+    int cantPartidas;
+}Config;
+
 void iniciarJuego();
 void verRanking();
-void cargarConfig();
+int cargarConfig(Config *c);
 void procesarJugador(void* elem, void* extraParams);
 void mostrarJugador(const void* dato, FILE* fp);
 

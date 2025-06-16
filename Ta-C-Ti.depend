@@ -123,11 +123,11 @@
 	"main.h"
 	<time.h>
 
-1750038692 c:\users\facundo\desktop\ta-c-ti\main.h
+1750096555 c:\users\facundo\desktop\ta-c-ti\main.h
 	<stdio.h>
 	"cola.h"
 
-1750038692 source:c:\users\facundo\desktop\ta-c-ti\main.c
+1750096531 source:c:\users\facundo\desktop\ta-c-ti\main.c
 	<stdio.h>
 	<time.h>
 	"main.h"
@@ -257,14 +257,15 @@
 	"lista.h"
 	"main.h"
 
-1750047719 c:\users\facundo\desktop\ta-c-ti\ranking.h
+1750094769 c:\users\facundo\desktop\ta-c-ti\ranking.h
 	"lista.h"
 	"main.h"
 
-1750048341 source:c:\users\facundo\desktop\ta-c-ti\ranking.c
+1750094769 source:c:\users\facundo\desktop\ta-c-ti\ranking.c
 	<stdio.h>
 	<string.h>
 	<time.h>
+	<math.h>
 	"lista.h"
 	"api.h"
 	"ranking.h"
