@@ -27,8 +27,15 @@ typedef struct{
     Cola colaInfo;
 }ProcesarJugadorExtraParams;
 
-typedef enum t_jugador t_tablero[9]; 
-typedef short int t_linea[3]; 
+typedef enum t_jugador t_tablero[9];
+typedef short int t_linea[3];
+
+typedef struct {
+    InfoJugador j;
+    t_tablero tablero;
+    int puntajePartida;
+    int numeroPartida;
+}InfoPartida;
 
 void iniciarJuego();
 void verRanking();

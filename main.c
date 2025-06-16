@@ -98,8 +98,17 @@ void procesarJugador(void* elem, void* extraParams){
         printf("\nQue el jugador \"%s\" se prepare para la partida %d/%d. Presione [Enter] cuando este listo... ", actual->nombre, i+1, PARTIDAS_POR_JUGADOR);
         fflush(stdin);
         getchar();
-        int puntaje = partida(actual->nombre, IAjugarTurno);
+        t_tablero tableroFinal;
+        int puntaje = partida(actual->nombre, IAjugarTurno, &tableroFinal);
         actual->puntaje += puntaje;
+        actual->partidasJugadas++;
+
+        InfoPartida pActual;
+        pActual.j = *actual;
+        pActual.puntajePartida=puntaje;
+        pActual.numeroPartida=i+1;
+        memcpy(pActual.tablero,tableroFinal,sizeof(t_tablero));
+        ponerEnCola(&(params->colaInfo),&pActual,sizeof(InfoPartida));
     }
 }
 
