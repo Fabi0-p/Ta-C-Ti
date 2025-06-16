@@ -2,4 +2,4 @@ bin
 obj
 ./api_response.json
 ./post_body.json
-*.txt
+informe*.txt

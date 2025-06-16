@@ -20,7 +20,7 @@ int reemplazarPuntaje(void** destino, unsigned* tamDestino, const void* nuevo, u
     InfoJugador* existente = (InfoJugador*)(*destino);
     const InfoJugador* nuevoJ = (const InfoJugador*)nuevo;
 
-    existente->puntaje = fmax(nuevoJ->puntaje, existente->puntaje);
+    existente->puntaje = nuevoJ->puntaje;
 
     return 1;
 }
@@ -62,11 +62,9 @@ void generarInformeTXT(Cola *p, Config *conf) {
     while (!colaVacia(p)) {
         sacarDeCola(p, &partida, sizeof(InfoPartida));
         if(!listaLlena(&mejoresPuntajes,sizeof(Lista))){
-            // Metemos los jugadores en orden alfabético, y cuando hay un jugador repetido pisamos el puntaje por el mayor
+            // Metemos los jugadores en orden alfabético, y cuando hay un jugador repetido pisamos el puntaje por el mayor...
             ponerEnOrden(&mejoresPuntajes,&partida.j,sizeof(InfoJugador),compararJugadorPorNombre, reemplazarPuntaje);
         }
-        // Y después ordenamos por puntaje
-        ordenarLista(&mejoresPuntajes, compararJugadorPorPuntajeAsc);
 
         fprintf(f, "Jugador: %s\n", partida.j.nombre);
         fprintf(f, "Partida nro: %d\n", partida.numeroPartida);
@@ -84,6 +82,8 @@ void generarInformeTXT(Cola *p, Config *conf) {
             suma =0;
         }
     }
+    // ...y después ordenamos por puntaje
+    ordenarLista(&mejoresPuntajes, compararJugadorPorPuntajeAsc);
     imprimirRankingTXT(&mejoresPuntajes,f);
     vaciarLista(&mejoresPuntajes);
     fclose(f);

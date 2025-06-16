@@ -2,7 +2,6 @@
 #define RANKING_H_INCLUDED
 #include "lista.h"
 #include "main.h"
-#define PARTIDAS_POR_JUGADOR 2
 void inicializarRanking();
 void actualizarPuntaje(const InfoJugador* j, int puntos);
 void verRanking();

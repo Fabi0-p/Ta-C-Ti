@@ -9,9 +9,6 @@
 #include"RivalIA.h"
 #include"Juego.h"
 
-// Este valor eventualmente debe venir de configuracion.txt
-#define PARTIDAS_POR_JUGADOR 2
-
 void iniciarJuego();
 
 int main(){
@@ -76,7 +73,7 @@ void iniciarJuego(Config *conf) {
     ProcesarJugadorExtraParams extraParams;
     int cant;
 
-    extraParams.partidasPorJugador = conf->cantPartidas;//PARTIDAS_POR_JUGADOR; // Esto se tiene que levantar de la config
+    extraParams.partidasPorJugador = conf->cantPartidas;// Esto se tiene que levantar de la config
     crearCola(&extraParams.colaInfo);
     crearLista(&listaJugadores);
 
@@ -95,7 +92,7 @@ void iniciarJuego(Config *conf) {
         // Insertamos cualquier número como prioridad relativa. No usamos bun % porque no nos interesa el valor preciso, solo que sea menor o mayor a los demás y que sea aleatorio
         // Además al no usar un % hacemos que sea menos probable que los valores se repitan
         j.prioridadRelativa = rand();
-        j.partidasRestantes = conf->cantPartidas;//PARTIDAS_POR_JUGADOR;
+        j.partidasRestantes = conf->cantPartidas;
 
         ponerEnOrdenConRepetidos(&listaJugadores, &j, sizeof(InfoJugador), compararJugadorPorPrioridadRelativa);
     }
@@ -118,7 +115,7 @@ void procesarJugador(void* elem, void* extraParams){
     InfoJugador *actual = (InfoJugador*)elem;
     ProcesarJugadorExtraParams* params = (ProcesarJugadorExtraParams*)extraParams;
     for(int i = 0; i < params->partidasPorJugador; i++){
-        printf("\nQue el jugador \"%s\" se prepare para la partida %d/%d. Presione [Enter] cuando este listo... ", actual->nombre, i+1, PARTIDAS_POR_JUGADOR);
+        printf("\nQue el jugador \"%s\" se prepare para la partida %d/%d. Presione [Enter] cuando este listo... ", actual->nombre, i+1, params->partidasPorJugador);
         fflush(stdin);
         getchar();
         t_tablero tableroFinal;
