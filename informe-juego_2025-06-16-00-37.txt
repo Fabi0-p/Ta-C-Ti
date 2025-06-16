@@ -1,0 +1,62 @@
+======= INFORME DE PARTIDAS =======
+
+Jugador: Facundo
+Partida nro: 1
+Puntaje de esta partida: -1
+Tablero final:
+ X | O | X 
+ O | O | X 
+ X | O |   
+
+------------------------
+
+Jugador: Facundo
+Partida nro: 2
+Puntaje de esta partida: 2
+Tablero final:
+ X | O | X 
+ O | O | X 
+ X | X | O 
+
+------------------------
+
+Jugador: Facundo2
+Partida nro: 1
+Puntaje de esta partida: -1
+Tablero final:
+ X | O | O 
+ X | O | X 
+ X | X | O 
+
+------------------------
+
+Jugador: Facundo2
+Partida nro: 2
+Puntaje de esta partida: -1
+Tablero final:
+ X | O | X 
+ X | O |   
+ X |   | O 
+
+------------------------
+
+Jugador: Facundo3
+Partida nro: 1
+Puntaje de esta partida: -1
+Tablero final:
+ O | O | O 
+ X | O | X 
+ X |   | X 
+
+------------------------
+
+Jugador: Facundo3
+Partida nro: 2
+Puntaje de esta partida: 3
+Tablero final:
+ O |   | X 
+ X | O | X 
+ O | X | O 
+
+------------------------
+

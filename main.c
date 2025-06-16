@@ -85,6 +85,7 @@ void iniciarJuego() {
     printf("\n Todas las partidas han sido jugadas.\n");
 
     // acá hay que llamar la función que genere el informe y pasarle como parámetro extraParams.colaInfo
+    generarInformeTXT(&extraParams.colaInfo);
     enviarRankingPorPOST("proceso", &listaJugadores);
     vaciarLista(&listaJugadores);
     vaciarCola(&extraParams.colaInfo);

@@ -3,7 +3,15 @@
   "Jugadores": [
     {
       "nombre": "Facundo",
-      "puntos": 1
+      "puntos": -2
+    },
+    {
+      "nombre": "Facundo1",
+      "puntos": 6
+    },
+    {
+      "nombre": "Facundo2",
+      "puntos": 5
     }
   ]
 }
