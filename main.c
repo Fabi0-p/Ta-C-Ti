@@ -83,7 +83,7 @@ void iniciarJuego(Config *conf) {
     getchar();
 
     for (int i = 0; i < cant; i++) {
-        agregarJugadores(&listaJugadores, i);
+        agregarJugadores(&listaJugadores, i, conf);
     }
 
     printf("\nOrden de los jugadores:\n");
@@ -126,7 +126,7 @@ void mostrarJugador(const void* dato, FILE* fp) {
     fprintf(fp, "  - %s\n", j->nombre);
 }
 
-void agregarJugadores(Lista *listaJugadores, int num){
+void agregarJugadores(Lista *listaJugadores, int num, Config *conf){
     InfoJugador j;
     int valido = 0;
     while(!valido){

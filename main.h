@@ -52,6 +52,6 @@ void verRanking(Config *c);
 int cargarConfig(Config *c);
 void procesarJugador(void* elem, void* extraParams);
 void mostrarJugador(const void* dato, FILE* fp);
-void agregarJugadores(Lista *listaJugadores, int num);
+void agregarJugadores(Lista *listaJugadores, int num, Config *conf);
 
 #endif
