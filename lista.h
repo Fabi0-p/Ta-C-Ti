@@ -28,6 +28,7 @@ int recorrerLista(Lista* Lista, void* extraParams, void (*Accion)(void*, void*))
 int listaLlena(const Lista* p, unsigned cantBytes);
 int listaVacia(const Lista* p);
 
+int compararJugadorPorPuntajeAsc(const void* a, const void* b);
 int compararJugadorPorPuntajeDesc(const void*, const void* );
 int compararJugadorPorNombre(const void* , const void* );
 int compararJugadorPorPrioridadRelativa(const void*, const void*);

@@ -164,7 +164,7 @@ void asignarFichas(enum t_jugador *jugH, enum t_jugador *IA)
 
 }
 
-int partida(char* nombreJug, void (*jugadaIA)(t_linea[8], t_tablero, enum t_jugador)){
+int partida(char* nombreJug, void (*jugadaIA)(t_linea[8], t_tablero, enum t_jugador),t_tablero *tfinal){
     t_tablero tablero;
     int estado = EST_EN_CURSO;
     enum t_jugador jugHumano;
@@ -185,7 +185,7 @@ int partida(char* nombreJug, void (*jugadaIA)(t_linea[8], t_tablero, enum t_juga
     while(estado == EST_EN_CURSO){
         if(turno % 2 == 0)
             turnoJugador(tablero, jugHumano, nombreJug);
-        else 
+        else
             jugadaIA(tabLinea, tablero, jugIA);
         estado = evalTablero(tabLinea, tablero, &ganador);
         turno++;
@@ -193,6 +193,7 @@ int partida(char* nombreJug, void (*jugadaIA)(t_linea[8], t_tablero, enum t_juga
     limpiarPantalla();
     printf("\nFin del juego! ");
     mostrarTablero(tablero);
+    memcpy(*tfinal,tablero,sizeof(t_tablero));
     switch(ganador){
         case J_O:
             printf("\nGanador: Os\n");

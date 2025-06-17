@@ -111,36 +111,42 @@
 	"RivalIA.h"
 	"Juego.h"
 
-1749327689 source:c:\users\facundo\desktop\ta-c-ti\juego.c
+1750036856 source:c:\users\facundo\desktop\ta-c-ti\juego.c
 	<stdio.h>
 	<stdlib.h>
 	"secundarias.h"
 	"Juego.h"
 
-1749219503 c:\users\facundo\desktop\ta-c-ti\secundarias.h
+1749663639 c:\users\facundo\desktop\ta-c-ti\secundarias.h
 
-1749327751 c:\users\facundo\desktop\ta-c-ti\juego.h
+1750036851 c:\users\facundo\desktop\ta-c-ti\juego.h
 	"main.h"
 	<time.h>
 
-1749219503 c:\users\facundo\desktop\ta-c-ti\main.h
-
-1749327744 source:c:\users\facundo\desktop\ta-c-ti\main.c
+1750097271 c:\users\facundo\desktop\ta-c-ti\main.h
 	<stdio.h>
+	"cola.h"
+
+1750097700 source:c:\users\facundo\desktop\ta-c-ti\main.c
+	<stdio.h>
+	<time.h>
 	"main.h"
-	"Juego.h"
-	"RivalIA.h"
 	"secundarias.h"
+	"ranking.h"
+	"api.h"
+	"lista.h"
+	"RivalIA.h"
+	"Juego.h"
 
-1749219503 c:\users\facundo\desktop\ta-c-ti\rivalia.h
+1749663639 c:\users\facundo\desktop\ta-c-ti\rivalia.h
 	"main.h"
 
-1749219503 source:c:\users\facundo\desktop\ta-c-ti\rivalia.c
+1750005731 source:c:\users\facundo\desktop\ta-c-ti\rivalia.c
 	<stdlib.h>
 	"RivalIA.h"
 	"Juego.h"
 
-1749219503 source:c:\users\facundo\desktop\ta-c-ti\secundarias.c
+1749663639 source:c:\users\facundo\desktop\ta-c-ti\secundarias.c
 	<stdlib.h>
 	"secundarias.h"
 
@@ -190,14 +196,15 @@
 	"cola.h"
 	"lista.h"
 
-1749958460 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\lista.c
-	"Lista.h"
+1750099148 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\lista.c
+	"lista.h"
 	"main.h"
 
 1750086758 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.c
 	<stdio.h>
 	<string.h>
 	<time.h>
+	<math.h>
 	"lista.h"
 	"api.h"
 	"ranking.h"
@@ -225,4 +232,44 @@
 	"lista.h"
 	"RivalIA.h"
 	"Juego.h"
+
+1750005731 source:c:\users\facundo\desktop\ta-c-ti\api.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"main.h"
+	"api.h"
+
+1749863040 c:\users\facundo\desktop\ta-c-ti\cola.h
+	"string.h"
+	"stdio.h"
+	"stdlib.h"
+
+1750005731 c:\users\facundo\desktop\ta-c-ti\api.h
+	"lista.h"
+
+1750046386 c:\users\facundo\desktop\ta-c-ti\lista.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1749863040 source:c:\users\facundo\desktop\ta-c-ti\cola.c
+	"cola.h"
+
+1750046753 source:c:\users\facundo\desktop\ta-c-ti\lista.c
+	"lista.h"
+	"main.h"
+
+1750097715 c:\users\facundo\desktop\ta-c-ti\ranking.h
+	"lista.h"
+	"main.h"
+
+1750097656 source:c:\users\facundo\desktop\ta-c-ti\ranking.c
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<math.h>
+	"lista.h"
+	"api.h"
+	"ranking.h"
 
