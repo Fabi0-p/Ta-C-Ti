@@ -41,6 +41,7 @@ int ponerEnOrden(Lista* lista, const void* d, unsigned cantBytes,
 
 int ponerEnOrdenConRepetidos(Lista* lista, const void* d, unsigned cantBytes,
                  int(*Comparar)(const void*, const void*));
+int existeEnLista(Lista* lista, const void* d, int(*Comparar)(const void*, const void*));
 // Funci�n auxiliar que el ranking exporta para acceder a la lista
 Lista* obtenerListaRanking();
 

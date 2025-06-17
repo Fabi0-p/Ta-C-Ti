@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include"cola.h"
+#include"lista.h"
 
 #define MAX_URL 200
 #define MAX_PASSW 30
@@ -51,5 +52,6 @@ void verRanking(Config *c);
 int cargarConfig(Config *c);
 void procesarJugador(void* elem, void* extraParams);
 void mostrarJugador(const void* dato, FILE* fp);
+void agregarJugadores(Lista *listaJugadores, int num);
 
 #endif

@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<time.h>
+#include<ctype.h>
 #include"main.h"
 
 #include "secundarias.h"
@@ -82,19 +83,7 @@ void iniciarJuego(Config *conf) {
     getchar();
 
     for (int i = 0; i < cant; i++) {
-        InfoJugador j;
-        printf("Nombre del jugador %d: ", i + 1);
-        fgets(j.nombre, sizeof(j.nombre), stdin);
-        j.nombre[strcspn(j.nombre, "\n")] = '\0';
-
-        j.puntaje = 0;
-        j.partidasJugadas = 0;
-        // Insertamos cualquier número como prioridad relativa. No usamos bun % porque no nos interesa el valor preciso, solo que sea menor o mayor a los demás y que sea aleatorio
-        // Además al no usar un % hacemos que sea menos probable que los valores se repitan
-        j.prioridadRelativa = rand();
-        j.partidasRestantes = conf->cantPartidas;
-
-        ponerEnOrdenConRepetidos(&listaJugadores, &j, sizeof(InfoJugador), compararJugadorPorPrioridadRelativa);
+        agregarJugadores(&listaJugadores, i);
     }
 
     printf("\nOrden de los jugadores:\n");
@@ -135,4 +124,36 @@ void procesarJugador(void* elem, void* extraParams){
 void mostrarJugador(const void* dato, FILE* fp) {
     const InfoJugador* j = (const InfoJugador*)dato;
     fprintf(fp, "  - %s\n", j->nombre);
+}
+
+void agregarJugadores(Lista *listaJugadores, int num){
+    InfoJugador j;
+    int valido = 0;
+    while(!valido){
+        valido = 1;
+        printf("Nombre del jugador %d: ", num + 1);
+        fgets(j.nombre, sizeof(j.nombre), stdin);
+        j.nombre[strcspn(j.nombre, "\n")] = '\0';
+        for(int i = 0; i < strlen(j.nombre); i++){
+            if(valido){
+                if(!isalpha(j.nombre[i]) && !isdigit(j.nombre[i]) && j.nombre[i] != ' '){
+                    printf("El nombre solo puede estar compuesto por caracteres alfanumericos y espacios en blanco.\n");
+                    valido = 0;
+                }
+            }
+        }
+        if(existeEnLista(listaJugadores, &j, compararJugadorPorNombre)){
+            printf("Ya se ha ingresado un jugador con ese nombre.\n");
+            valido = 0;
+        }
+    }
+
+    j.puntaje = 0;
+    j.partidasJugadas = 0;
+    // Insertamos cualquier número como prioridad relativa. No usamos bun % porque no nos interesa el valor preciso, solo que sea menor o mayor a los demás y que sea aleatorio
+    // Además al no usar un % hacemos que sea menos probable que los valores se repitan
+    j.prioridadRelativa = rand();
+    j.partidasRestantes = conf->cantPartidas;
+
+    ponerEnOrdenConRepetidos(listaJugadores, &j, sizeof(InfoJugador), compararJugadorPorPrioridadRelativa);
 }
