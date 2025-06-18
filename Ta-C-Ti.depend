@@ -128,7 +128,7 @@
 	"cola.h"
 	"lista.h"
 
-1750257682 source:c:\users\facundo\desktop\ta-c-ti\main.c
+1750264167 source:c:\users\facundo\desktop\ta-c-ti\main.c
 	<stdio.h>
 	<time.h>
 	<ctype.h>
@@ -266,7 +266,7 @@
 	"lista.h"
 	"main.h"
 
-1750260202 source:c:\users\facundo\desktop\ta-c-ti\ranking.c
+1750261682 source:c:\users\facundo\desktop\ta-c-ti\ranking.c
 	<stdio.h>
 	<string.h>
 	<time.h>

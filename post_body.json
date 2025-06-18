@@ -2,16 +2,12 @@
   "CodigoGrupo": "proceso",
   "Jugadores": [
     {
-      "nombre": "Facundo",
-      "puntos": 3
+      "nombre": "facundo1",
+      "puntos": 5
     },
     {
-      "nombre": "Agustinho",
-      "puntos": 3
-    },
-    {
-      "nombre": "Fernandinho",
-      "puntos": 7
+      "nombre": "facundo",
+      "puntos": 2
     }
   ]
 }
