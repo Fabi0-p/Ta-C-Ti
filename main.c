@@ -79,12 +79,12 @@ void iniciarJuego(Config *conf) {
     crearLista(&listaJugadores);
 
     do{
-            printf("\n Cuantos jugadores van a jugar? ");
-            leido = scanf("%d", &cant);
-            if(leido!=1 || (cant < 1 && cant >999))
-                printf("\n Ingrese un numero valido \n");
+        printf("\n Cuantos jugadores van a jugar? ");
+        leido = scanf("%d", &cant);
+        if(leido!=1 || (cant < 1 && cant >999))
+            printf("\n Ingrese un numero valido \n");
 
-            while(getchar()!= '\n');//en el caso de que haya tomado una letra, entra en bucle hasta limpiar el buffer
+        while(getchar()!= '\n');//en el caso de que haya tomado una letra, entra en bucle hasta limpiar el buffer
 
     }while(leido!=1 || (cant < 1 && cant >999) );
 
@@ -95,11 +95,12 @@ void iniciarJuego(Config *conf) {
     printf("\nOrden de los jugadores:\n");
     mostrarLista(&listaJugadores, mostrarJugador, stdout);
     recorrerLista(&listaJugadores, &extraParams, procesarJugador);
+    ordenarLista(&listaJugadores, compararJugadorPorPuntajeDesc);
 
     printf("\n Todas las partidas han sido jugadas.\n");
 
     // acá hay que llamar la función que genere el informe y pasarle como parámetro extraParams.colaInfo
-    generarInformeTXT(&extraParams.colaInfo,conf);
+    generarInformeTXT(&extraParams.colaInfo, &listaJugadores, conf);
     enviarRankingPorPOST(conf->passw, &listaJugadores);//aca cambie "proceso" -> por conf->pasww
     vaciarLista(&listaJugadores);
     vaciarCola(&extraParams.colaInfo);

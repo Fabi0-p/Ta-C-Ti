@@ -42,13 +42,11 @@ void verRanking(Config *conf) {
 
 
 
-void generarInformeTXT(Cola *p, Config *conf) {
+void generarInformeTXT(Cola *p, Lista *mejoresPuntajes, Config *conf) {
     time_t t = time(NULL);
     struct tm* tm_info = localtime(&t);
     char nombreArchivo[100];
     int suma = 0;
-    Lista mejoresPuntajes;
-    crearLista(&mejoresPuntajes);
     strftime(nombreArchivo, sizeof(nombreArchivo), "informe-juego_%Y-%m-%d-%H-%M.txt", tm_info);
 
     FILE* f = fopen(nombreArchivo, "w");
@@ -61,10 +59,6 @@ void generarInformeTXT(Cola *p, Config *conf) {
     InfoPartida partida;
     while (!colaVacia(p)) {
         sacarDeCola(p, &partida, sizeof(InfoPartida));
-        if(!listaLlena(&mejoresPuntajes,sizeof(Lista))){
-            // Metemos los jugadores en orden alfabético, y cuando hay un jugador repetido pisamos el puntaje por el mayor...
-            ponerEnOrden(&mejoresPuntajes,&partida.j,sizeof(InfoJugador),compararJugadorPorNombre, reemplazarPuntaje);
-        }
 
         fprintf(f, "Jugador: %s\n", partida.j.nombre);
         fprintf(f, "Partida nro: %d\n", partida.numeroPartida);
@@ -83,9 +77,7 @@ void generarInformeTXT(Cola *p, Config *conf) {
         }
     }
     // ...y después ordenamos por puntaje
-    ordenarLista(&mejoresPuntajes, compararJugadorPorPuntajeDesc);
-    imprimirRankingTXT(&mejoresPuntajes,f);
-    vaciarLista(&mejoresPuntajes);
+    imprimirRankingTXT(mejoresPuntajes,f);
     fclose(f);
 
     printf(" Informe generado: %s\n", nombreArchivo);
