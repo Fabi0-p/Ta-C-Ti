@@ -25,7 +25,6 @@ int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes)
 {
     NodoLista* nuevo;
 
-    // Avanza hasta el final de la lista
     while (*p)
         p = &(*p)->sig;
 
@@ -47,14 +46,14 @@ int ponerAlFinal(Lista* p, const void* d, unsigned cantBytes)
 int vaciarListaYMostrar(Lista* p, void (*Mostrar)(const void* elem, FILE* arch), FILE* fp)
 {
     int cant = 0;
-    while(*p) //Mientras hay nodo
+    while(*p)
     {
-        NodoLista* aux = *p; //"Memoriza" donde est�
+        NodoLista* aux = *p;
 
         cant++;
         *p = aux->sig;  //Desengancho el nodo
 
-        if(Mostrar && fp) //No falla si no recibe la funcion o el archivo
+        if(Mostrar && fp)
             Mostrar(aux->info, fp);
 
         free(aux->info);
@@ -106,7 +105,7 @@ int compararJugadorPorPuntajeAsc(const void* a, const void* b) {
 
 void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {
     if (!lista || !*lista || !(*lista)->sig)
-        return; // lista vac�a o con un solo elemento
+        return;
 
     int ordenado;
     do {
@@ -115,10 +114,10 @@ void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {
 
         while (actual && actual->sig) {
             if (!actual->info || !actual->sig->info)
-                break; // evita crash si alg�n info es NULL
+                break;
 
             if (Comparar(actual->info, actual->sig->info) > 0) {
-                // intercambio seguro de info y tama�os
+
                 void* tempInfo = actual->info;
                 unsigned tempTam = actual->tamInfo;
 

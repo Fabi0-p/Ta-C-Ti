@@ -73,7 +73,7 @@ void obtenerRankingDesdeAPI(const char* codigoGrupo, Lista* lista)
 
     char buffer[4096];
     fread(buffer, sizeof(char), sizeof(buffer) - 1, f);
-    buffer[sizeof(buffer) - 1] = '\0'; // Null-terminate
+    buffer[sizeof(buffer) - 1] = '\0';
     fclose(f);
 
     char* ptr = buffer;
@@ -98,7 +98,7 @@ void obtenerRankingDesdeAPI(const char* codigoGrupo, Lista* lista)
 
             if (!ponerAlFinal(lista, &j, sizeof(InfoJugador)))
                 {
-                    printf("[ERROR] Falló insertar jugador en lista\n");
+                    printf("Falló insertar jugador en lista\n");
                     break;
                 }
 
