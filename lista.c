@@ -1,4 +1,4 @@
-#include "Lista.h"
+#include "lista.h"
 #include "main.h"
 
 void crearLista(Lista* p)
@@ -63,7 +63,7 @@ int vaciarListaYMostrar(Lista* p, void (*Mostrar)(const void* elem, FILE* arch),
     return cant;
 }
 
-int ListaLlena(const Lista* p, unsigned cantBytes)
+int listaLlena(const Lista* p, unsigned cantBytes)
 {
     NodoLista* aux = malloc(sizeof(NodoLista));
     void* info = malloc(cantBytes);
@@ -97,6 +97,11 @@ int compararJugadorPorPuntajeDesc(const void* a, const void* b) {
     const InfoJugador* j1 = (const InfoJugador*)a;
     const InfoJugador* j2 = (const InfoJugador*)b;
     return j2->puntaje - j1->puntaje; // mayor a menor
+}
+int compararJugadorPorPuntajeAsc(const void* a, const void* b) {
+    const InfoJugador* j1 = (const InfoJugador*)a;
+    const InfoJugador* j2 = (const InfoJugador*)b;
+    return j1->puntaje - j2->puntaje; // mayor a menor
 }
 
 void ordenarLista(Lista* lista, int(*Comparar)(const void*, const void*)) {

@@ -1,4 +1,5 @@
 bin
 obj
-api_response.json
-post_body.json
+./api_response.json
+./post_body.json
+informe*.txt

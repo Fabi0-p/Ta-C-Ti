@@ -5,6 +5,9 @@
 #include"cola.h"
 #include"lista.h"
 
+#define MAX_URL 200
+#define MAX_PASSW 30
+#define ARCH_CONFIG "config.txt"
 #define EST_EN_CURSO 0
 #define EST_EMPATE 1
 #define EST_GANADO 2
@@ -28,14 +31,27 @@ typedef struct{
     Cola colaInfo;
 }ProcesarJugadorExtraParams;
 
-typedef enum t_jugador t_tablero[9]; 
-typedef short int t_linea[3]; 
+typedef enum t_jugador t_tablero[9];
+typedef short int t_linea[3];
 
-void iniciarJuego();
-void verRanking();
-void cargarConfig();
+typedef struct {
+    InfoJugador j;
+    t_tablero tablero;
+    int puntajePartida;
+    int numeroPartida;
+}InfoPartida;
+
+typedef struct {
+    char url[MAX_URL];
+    char passw[MAX_PASSW];
+    int cantPartidas;
+}Config;
+
+void iniciarJuego(Config *c);
+void verRanking(Config *c);
+int cargarConfig(Config *c);
 void procesarJugador(void* elem, void* extraParams);
 void mostrarJugador(const void* dato, FILE* fp);
-void agregarJugadores(Lista *listaJugadores, int num);
+void agregarJugadores(Lista *listaJugadores, int num, Config *conf);
 
 #endif
