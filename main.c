@@ -72,15 +72,21 @@ int cargarConfig(Config *c){
 void iniciarJuego(Config *conf) {
     Lista listaJugadores;
     ProcesarJugadorExtraParams extraParams;
-    int cant;
+    int cant,leido;
 
     extraParams.partidasPorJugador = conf->cantPartidas;// Esto se tiene que levantar de la config
     crearCola(&extraParams.colaInfo);
     crearLista(&listaJugadores);
 
-    printf("\nCuantos jugadores van a jugar? ");
-    scanf("%d", &cant);
-    getchar();
+    do{
+            printf("\n Cuantos jugadores van a jugar? ");
+            leido = scanf("%d", &cant);
+            if(leido!=1 || (cant < 1 && cant >999))
+                printf("\n Ingrese un numero valido \n");
+
+            while(getchar()!= '\n');//en el caso de que haya tomado una letra, entra en bucle hasta limpiar el buffer
+
+    }while(leido!=1 || (cant < 1 && cant >999) );
 
     for (int i = 0; i < cant; i++) {
         agregarJugadores(&listaJugadores, i, conf);

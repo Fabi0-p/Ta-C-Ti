@@ -2,12 +2,12 @@
   "CodigoGrupo": "proceso",
   "Jugadores": [
     {
-      "nombre": "Roberto",
-      "puntos": -3
+      "nombre": "facundo1",
+      "puntos": 5
     },
     {
-      "nombre": "Fabio",
-      "puntos": 7
+      "nombre": "facundo",
+      "puntos": 2
     }
   ]
 }
