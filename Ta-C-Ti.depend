@@ -166,7 +166,7 @@
 	"main.h"
 	"api.h"
 
-1750201612 e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.h
+1750282423 e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.h
 	"lista.h"
 	"main.h"
 
@@ -200,7 +200,7 @@
 	"main.h"
 	<time.h>
 
-1750201951 e:\documentos\unlam win\2025\ayed\ta-c-ti\main.h
+1750281879 e:\documentos\unlam win\2025\ayed\ta-c-ti\main.h
 	<stdio.h>
 	"cola.h"
 	"lista.h"
@@ -209,7 +209,7 @@
 	"lista.h"
 	"main.h"
 
-1750201612 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.c
+1750282374 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\ranking.c
 	<stdio.h>
 	<string.h>
 	<time.h>
@@ -230,7 +230,7 @@
 	<stdlib.h>
 	"secundarias.h"
 
-1750092076 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\main.c
+1750282364 source:e:\documentos\unlam win\2025\ayed\ta-c-ti\main.c
 	<stdio.h>
 	<time.h>
 	<ctype.h>
