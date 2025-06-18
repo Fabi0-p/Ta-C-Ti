@@ -83,7 +83,7 @@ void generarInformeTXT(Cola *p, Config *conf) {
         }
     }
     // ...y después ordenamos por puntaje
-    ordenarLista(&mejoresPuntajes, compararJugadorPorPuntajeAsc);
+    ordenarLista(&mejoresPuntajes, compararJugadorPorPuntajeDesc);
     imprimirRankingTXT(&mejoresPuntajes,f);
     vaciarLista(&mejoresPuntajes);
     fclose(f);
