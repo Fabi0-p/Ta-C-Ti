@@ -16,9 +16,6 @@ int main(){
     srand(time(NULL));
     Config conf;
     cargarConfig(&conf);
-    printf("leidos correctamente los valores de :\n");
-    printf("URL : %s  PASWW %s  \n",conf.url,conf.passw);
-    printf("Cant de partidas %d:\n",conf.cantPartidas);
     int op = 0;
 
     while(op != 3){
@@ -41,9 +38,6 @@ int main(){
                 break;
         }
     }
-
-    printf("\n[DEBUG] Programa finalizado correctamente.\n");
-
     return 0;
 }
 

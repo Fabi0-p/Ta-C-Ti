@@ -80,7 +80,6 @@ void generarInformeTXT(Cola *p, Lista *mejoresPuntajes, Config *conf) {
     imprimirRankingTXT(mejoresPuntajes,f);
     fclose(f);
 
-    printf(" Informe generado: %s\n", nombreArchivo);
 }
 void imprimirTableroTXT(t_tablero tab,FILE *f)
 {

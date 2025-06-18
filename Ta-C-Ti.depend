@@ -5,36 +5,43 @@
 
 1745706834 /mnt/Datos/Documentos/UNLaM Win/2025/AyED/Ta-C-Ti/main.h
 
-1749762714 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\api.c
+1750281016 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\api.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	"ranking.h"
-	"jugadores.h"
+	"main.h"
 	"api.h"
 
-1749762964 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\main.c
+1750281041 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\main.c
 	<stdio.h>
+	<time.h>
+	<ctype.h>
 	"main.h"
+	"secundarias.h"
 	"ranking.h"
 	"api.h"
 	"lista.h"
-	"jugadores.h"
+	"RivalIA.h"
+	"Juego.h"
 
-1748119897 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\main.h
+1750280512 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\main.h
+	<stdio.h>
+	"cola.h"
+	"lista.h"
 
-1749762984 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\ranking.c
+1750281318 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\ranking.c
 	<stdio.h>
 	<string.h>
 	<time.h>
+	<math.h>
 	"lista.h"
 	"api.h"
 	"ranking.h"
 
-1748663672 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\cola.c
+1749940198 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\cola.c
 	"cola.h"
 
-1748663632 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\cola.h
+1749940198 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\cola.h
 	"string.h"
 	"stdio.h"
 	"stdlib.h"
@@ -50,20 +57,20 @@
 
 1748725043 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\jugadores.h
 
-1749762022 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\ranking.h
+1750280512 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\ranking.h
 	"lista.h"
-	"jugadores.h"
+	"main.h"
 
-1749763024 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\lista.h
+1750280512 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\lista.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 
-1749760251 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\lista.c
-	"Lista.h"
-	"jugadores.h"
+1750281132 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\lista.c
+	"lista.h"
+	"main.h"
 
-1748724858 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\api.h
+1750195529 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\api.h
 	"lista.h"
 
 1748724858 
@@ -274,4 +281,28 @@
 	"lista.h"
 	"api.h"
 	"ranking.h"
+
+1749940198 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\secundarias.c
+	<stdlib.h>
+	"secundarias.h"
+
+1749940198 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\secundarias.h
+
+1750280512 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\juego.c
+	<stdio.h>
+	<stdlib.h>
+	"secundarias.h"
+	"Juego.h"
+
+1750280512 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\juego.h
+	"main.h"
+	<time.h>
+
+1750195529 source:c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\rivalia.c
+	<stdlib.h>
+	"RivalIA.h"
+	"Juego.h"
+
+1749940198 c:\users\administrador\documents\facultad\algoritmos\ta-c-ti\rivalia.h
+	"main.h"
 
